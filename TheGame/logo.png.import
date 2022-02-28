@@ -1,0 +1,13 @@
+[remap]
+
+importer="image"
+type="Image"
+path="res://.import/logo.png-cca8726399059c8d4f806e28e356b14d.image"
+
+[deps]
+
+source_file="res://logo.png"
+dest_files=[ "res://.import/logo.png-cca8726399059c8d4f806e28e356b14d.image" ]
+
+[params]
+

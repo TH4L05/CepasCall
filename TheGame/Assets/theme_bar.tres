@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=3 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.662745, 0.611765, 0.611765, 0.392157 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+
+[resource]
+ProgressBar/colors/font_color = Color( 0.94, 0.94, 0.94, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/icons/Healthbar = null
+ProgressBar/styles/bg = SubResource( 1 )
+ProgressBar/styles/fg = SubResource( 2 )

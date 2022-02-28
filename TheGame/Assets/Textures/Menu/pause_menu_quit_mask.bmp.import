@@ -1,0 +1,15 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+path="res://.import/pause_menu_quit_mask.bmp-d2496ab3dd8d26d5944aa15f1aa26be7.res"
+
+[deps]
+
+source_file="res://Assets/Textures/Menu/pause_menu_quit_mask.bmp"
+dest_files=[ "res://.import/pause_menu_quit_mask.bmp-d2496ab3dd8d26d5944aa15f1aa26be7.res" ]
+
+[params]
+
+create_from=0
+threshold=0.5
