@@ -16,14 +16,14 @@
 <p align="center"><img src="https://img.itch.zone/aW1nLzUzOTU1NzIucG5n/original/m0q6ze.png" alt="Cepas Call" width="700" height="65"></p>
 <h2 align="center">Responsiblities:</h2>
 
-<ul>
-  <li>player and movement</p></li>
-  <li>enemy behaviour</li>
-  <li>trigger</li>
-  <li>text appearance</li>
-  <li>ui functionality</li>
-  <li>credits</li>
-</ul>
+<table align="center">
+  <tr><td>  - player and movement</td></tr>
+  <tr><td>  - enemy behaviour</td></tr>
+  <tr><td>  - trigger</td></tr>
+  <tr><td>  - text appearance</td></tr>
+  <tr><td>  - ui functionality</td></tr>
+  <tr><td>  - credits</td></tr>
+</table>
   
 <p align="center"><img src="https://img.itch.zone/aW1nLzUzOTU1NzIucG5n/original/m0q6ze.png" alt="Cepas Call" width="700" height="65"></p>
 
