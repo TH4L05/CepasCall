@@ -1,0 +1,377 @@
+[gd_scene load_steps=44 format=2]
+
+[ext_resource path="res://Assets/Textures/Objects/tex_enemy_melee.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Models/vfx/enemy_melee_leg.tres" type="ArrayMesh" id=2]
+[ext_resource path="res://Assets/Models/vfx/enemy_melee_saw.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://Assets/Models/vfx/enemy_melee_exhaust.tres" type="ArrayMesh" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.0740741, 0.437037 )
+colors = PoolColorArray( 0.993652, 0.973597, 0.950956, 1, 0.946777, 0.558288, 0.159029, 1, 0.141176, 0.0666667, 0.0666667, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+min_value = -27.28
+max_value = 224.68
+_data = [ Vector2( 0, 188.031 ), 0.0, -596.081, 0, 0, Vector2( 0.0379747, -18.1178 ), 0.0, 0.0, 0, 0, Vector2( 1, -22.754 ), -6.28164, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0 ), 0.0, 8.93584, 0, 0, Vector2( 0.221519, 1 ), -0.20317, -0.20317, 0, 0, Vector2( 0.601266, 0.260227 ), -1.19697, -1.19697, 0, 0, Vector2( 1, 0 ), 0.286302, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+direction = Vector3( 0, 1, 0 )
+spread = 75.01
+gravity = Vector3( 0, 0.815, 0 )
+initial_velocity = 1.72
+linear_accel_curve = SubResource( 4 )
+scale = 1.77
+scale_curve = SubResource( 6 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=8]
+default_input_values = [ 0, 0.0, 1, 0.5 ]
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarOp" id=9]
+output_port_for_preview = 0
+default_input_values = [ 0, 1.0, 1, 0.0 ]
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=10]
+output_port_for_preview = 0
+function = 15
+
+[sub_resource type="VisualShaderNodeVectorOp" id=11]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeColorConstant" id=12]
+constant = Color( 0.457031, 0.0142822, 0.0142822, 1 )
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=13]
+uniform_name = "ScalarUniform"
+
+[sub_resource type="VisualShaderNodeInput" id=14]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeInput" id=15]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="OpenSimplexNoise" id=16]
+
+[sub_resource type="NoiseTexture" id=17]
+width = 258
+height = 258
+seamless = true
+noise = SubResource( 16 )
+
+[sub_resource type="VisualShaderNodeTexture" id=18]
+texture = SubResource( 17 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=19]
+output_port_for_preview = 0
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=20]
+output_port_for_preview = 0
+function = 15
+
+[sub_resource type="VisualShader" id=21]
+code = "shader_type spatial;
+render_mode depth_draw_alpha_prepass, cull_disabled, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_7;
+uniform float ScalarUniform;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Input:17
+	vec3 n_out17p0 = COLOR.rgb;
+
+// Input:2
+	vec3 n_out2p0 = vec3(UV, 0.0);
+
+// Texture:7
+	vec4 tex_frg_7_read = texture(tex_frg_7, n_out2p0.xy);
+	vec3 n_out7p0 = tex_frg_7_read.rgb;
+	float n_out7p1 = tex_frg_7_read.a;
+
+// ScalarUniform:16
+	float n_out16p0 = ScalarUniform;
+
+// ScalarOp:8
+	float n_out8p0 = dot(n_out7p0, vec3(0.333333, 0.333333, 0.333333)) - n_out16p0;
+
+// ScalarFunc:9
+	float n_out9p0 = round(n_out8p0);
+
+// Output:0
+	ALBEDO = n_out17p0;
+	ALPHA = n_out9p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( 278, 23 )
+modes/cull = 2
+modes/depth_draw = 3
+nodes/fragment/0/position = Vector2( 1340, 140 )
+nodes/fragment/2/node = SubResource( 15 )
+nodes/fragment/2/position = Vector2( 80, 60 )
+nodes/fragment/7/node = SubResource( 18 )
+nodes/fragment/7/position = Vector2( 240, 20 )
+nodes/fragment/8/node = SubResource( 19 )
+nodes/fragment/8/position = Vector2( 400, 160 )
+nodes/fragment/9/node = SubResource( 20 )
+nodes/fragment/9/position = Vector2( 560, 120 )
+nodes/fragment/11/node = SubResource( 8 )
+nodes/fragment/11/position = Vector2( 560, 360 )
+nodes/fragment/12/node = SubResource( 9 )
+nodes/fragment/12/position = Vector2( 740, 360 )
+nodes/fragment/13/node = SubResource( 10 )
+nodes/fragment/13/position = Vector2( 900, 320 )
+nodes/fragment/14/node = SubResource( 11 )
+nodes/fragment/14/position = Vector2( 1118, 275 )
+nodes/fragment/15/node = SubResource( 12 )
+nodes/fragment/15/position = Vector2( 960, 520 )
+nodes/fragment/16/node = SubResource( 13 )
+nodes/fragment/16/position = Vector2( 280, 420 )
+nodes/fragment/17/node = SubResource( 14 )
+nodes/fragment/17/position = Vector2( 860, 60 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 7, 0, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 0, 1, 8, 0, 11, 0, 11, 0, 12, 1, 12, 0, 13, 0, 13, 0, 14, 0, 15, 0, 14, 1, 16, 0, 8, 1, 17, 0, 0, 0 )
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
+shader_param/ScalarUniform = 0.156
+
+[sub_resource type="SphereMesh" id=23]
+material = SubResource( 22 )
+radius = 0.5
+height = 1.0
+radial_segments = 6
+rings = 2
+
+[sub_resource type="SpatialMaterial" id=24]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Curve" id=25]
+_data = [ Vector2( 0, 0 ), 0.0, 3.59091, 0, 0, Vector2( 0.272152, 1 ), 0.438889, 0.438889, 0, 0, Vector2( 1, 0.0170454 ), -1.49851, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=26]
+curve = SubResource( 25 )
+
+[sub_resource type="ParticlesMaterial" id=27]
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 50.0
+gravity = Vector3( 0, -14.281, 0 )
+initial_velocity = 9.35
+angular_velocity = 446.9
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.14
+scale_curve = SubResource( 26 )
+
+[sub_resource type="SpatialMaterial" id=28]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="SpatialMaterial" id=29]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=30]
+offsets = PoolRealArray( 0, 0.266667, 0.740741, 0.925926 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.914188, 0.96582, 0.426319, 1, 0.84082, 0.556561, 0.0788269, 1, 1, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=31]
+gradient = SubResource( 30 )
+
+[sub_resource type="Gradient" id=32]
+offsets = PoolRealArray( 0, 0.533333, 0.985185 )
+colors = PoolColorArray( 0.92334, 0.891083, 0.786282, 1, 1, 0.715839, 0.363281, 1, 1, 0.553712, 0, 1 )
+
+[sub_resource type="GradientTexture" id=33]
+gradient = SubResource( 32 )
+
+[sub_resource type="Curve" id=34]
+_data = [ Vector2( 0, 0.527273 ), 0.0, -0.42438, 0, 0, Vector2( 1, 0 ), -0.870524, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=35]
+curve = SubResource( 34 )
+
+[sub_resource type="ParticlesMaterial" id=36]
+trail_divisor = 5
+trail_size_modifier = SubResource( 35 )
+trail_color_modifier = SubResource( 33 )
+direction = Vector3( 0, 1, 0 )
+spread = 50.0
+gravity = Vector3( 0, -14.281, 0 )
+initial_velocity = 9.35
+angular_velocity = 446.9
+scale = 0.1
+scale_curve = SubResource( 26 )
+color_ramp = SubResource( 31 )
+
+[sub_resource type="SpatialMaterial" id=37]
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+
+[sub_resource type="SphereMesh" id=38]
+material = SubResource( 37 )
+radial_segments = 8
+rings = 3
+
+[sub_resource type="Animation" id=39]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("main_explosion:draw_pass_1:material:shader_param/ScalarUniform")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -0.163, 0.156 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("main_explosion:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("exhaust_particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("leg_particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("saw_particles:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ember:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Particles_Explosion" type="Spatial"]
+
+[node name="main_explosion" type="Particles" parent="."]
+amount = 18
+lifetime = 1.82
+one_shot = true
+explosiveness = 1.0
+visibility_aabb = AABB( -2.06272, -1.00001, -2.20869, 4.13276, 3.39913, 4.28061 )
+local_coords = false
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 23 )
+
+[node name="exhaust_particles" type="Particles" parent="."]
+transform = Transform( -0.318976, 0, 0.947763, 0, 1, 0, -0.947763, 0, -0.318976, 0, 0, 0 )
+material_override = SubResource( 24 )
+emitting = false
+amount = 2
+lifetime = 1.65
+one_shot = true
+explosiveness = 0.8
+visibility_aabb = AABB( -6.59361, -5.49201, -0.377724, 10.4736, 8.7597, 0.755448 )
+process_material = SubResource( 27 )
+draw_pass_1 = ExtResource( 4 )
+
+[node name="leg_particles" type="Particles" parent="."]
+transform = Transform( 0.713703, 0, -0.700449, 0, 1, 0, 0.700449, 0, 0.713703, 0, 0, 0 )
+material_override = SubResource( 28 )
+emitting = false
+amount = 2
+lifetime = 1.65
+one_shot = true
+explosiveness = 0.8
+visibility_aabb = AABB( -0.32641, -7.10921, -0.32641, 9.46587, 10.5496, 0.65282 )
+process_material = SubResource( 27 )
+draw_pass_1 = ExtResource( 2 )
+
+[node name="saw_particles" type="Particles" parent="."]
+transform = Transform( 0.956435, 0.000458552, -0.291945, -0.000299454, 1, 0.000589665, 0.291946, -0.000476558, 0.956435, 0, 0, 0 )
+material_override = SubResource( 29 )
+emitting = false
+amount = 1
+lifetime = 1.65
+one_shot = true
+explosiveness = 0.8
+visibility_aabb = AABB( -0.570597, -6.13735, -0.570597, 7.85555, 9.17698, 1.14119 )
+process_material = SubResource( 27 )
+draw_pass_1 = ExtResource( 3 )
+
+[node name="ember" type="Particles" parent="."]
+transform = Transform( 0.956435, 0.000458552, -0.291945, -0.000299454, 1, 0.000589665, 0.291946, -0.000476558, 0.956435, 0, 0, 0 )
+visible = false
+amount = 30
+lifetime = 1.65
+one_shot = true
+explosiveness = 0.8
+visibility_aabb = AABB( -2.00001, -2.00001, -2.00001, 4.00002, 4.00002, 4.00002 )
+process_material = SubResource( 36 )
+draw_pass_1 = SubResource( 38 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/process = SubResource( 39 )

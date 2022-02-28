@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Models/scene/stone2.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Models/scene/stone1.tscn" type="PackedScene" id=2]
+
+[node name="Stones_Left" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0355434, 0, 0.561332 )
+
+[node name="stones2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.413887, -0.0216299, 1.95662, 0.00510347, 2.2999, 0.0181452, -1.9567, 0.00142339, 0.413917, -39.2965, -1.96587, -7.71449 )
+
+[node name="stones3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.8109, -0.0141709, 0.848817, 0.00510347, 2.2999, 0.0181452, -0.848891, -0.0164032, 1.81085, -29.7301, -1.45485, -18.1083 )
+
+[node name="stones" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.97777, 0.200757, -0.252324, -0.234933, 1.95941, -0.373588, 0.18235, 0.347021, 2.25539, -41.509, 2.08837, -6.62054 )
+
+[node name="stones4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.13267, 0, -1.3045, 0, 2.5, 0, 1.3045, 0, 2.13267, -44.4453, -0.615482, -25.7148 )
+
+[node name="stones5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 3.93764, 0, -0.703529, 0, 4, 0, 0.703529, 0, 3.93764, -38.7534, -0.600572, -22.3819 )
+
+[node name="stones6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1.81852, 0, 0.957337, 0, 2, 0, -0.832466, 0, 2.09129, -16.0783, -1.08305, -22.4024 )
+
+[node name="stones7" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1.73914, -0.384188, -0.454911, -0.340419, 1.96275, -0.0890439, 0.927087, 0, -0.886074, -16.5868, 1.27649, -21.1335 )
+
+[node name="stones8" parent="." instance=ExtResource( 2 )]
+transform = Transform( -2.48597, 0, -0.211556, 0, 2, 0, 0.264445, 0, -1.98878, -24.1166, -1.68221, -17.3531 )
+
+[node name="stones9" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.45884, -0.349118, 0.0934523, 0.449536, 1.94209, -0.314588, -0.04479, 0.326214, 1.97289, -23.4577, 1.05012, -18.0569 )
+
+[node name="stones12" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.78085, 0, 0.750377, 0, 4, 0, -1.12557, 0, 1.8539, -20.1477, -2.95133, -19.4486 )
+
+[node name="stones13" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.48121, -0.230984, 1.10021, 0.28849, 1.98662, 0.127922, -1.66144, 0, 1.66528, -38.1692, 3.62052, -17.4858 )
+
+[node name="stones14" parent="." instance=ExtResource( 2 )]
+transform = Transform( -1.98905, 0, -0.209023, 0, 2, 0, 0.209023, 0, -1.98905, -36.4639, 4.38372, -20.0943 )
+
+[node name="stones16" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.12953, 0.435867, 1.37842, -0.42012, 2.96421, -0.128115, -2.07089, -0.153138, 1.44345, -42.8635, -2.45908, -3.11098 )
+
+[node name="stones17" parent="." instance=ExtResource( 2 )]
+transform = Transform( 3.16211, 0, 3.0985, 0, 4, 0, -3.87312, 0, 2.52968, -46.499, -1.31786, -4.61002 )
+
+[node name="stones23" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.91118, 0, 2.31244, 0, 3, 0, -2.31244, 0, 1.91118, -37.1317, -0.720436, -14.4112 )
+
+[node name="stones25" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.97758, 0.338001, -0.140698, 0.332472, 2.97908, 0.120617, 0.153307, 0.104123, -2.99427, -34.4711, 0.370946, -20.3393 )
+
+[node name="stones10" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.99956, 0, 0.0513631, 0, 3, 0, -0.0513631, 0, -2.99956, -27.1106, 1.4674, -21.0627 )
+
+[node name="stones11" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.04563, 0, -1.43716, 0, 3, 0, 1.43716, 0, -2.04563, -17.4077, -2.63415, -23.0099 )
+
+[node name="stones15" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.38394, 0, 0.752888, 0, 3, 0, -0.752888, 0, -2.38394, -34.515, -0.776746, -25.2286 )
+
+[node name="stones22" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.46073, 0, -0.441381, 0, 3, 0, 0.441381, 0, -2.46073, -41.5879, 5.65628, -22.3827 )
+
+[node name="stones24" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.47491, 0.101552, 0.253648, -0.0445387, 1.46328, -0.326864, -0.269568, 0.313865, 1.44181, -19.2164, -0.734703, -25.6698 )
+
+[node name="stones18" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.39213, 0, -0.558558, 0, 1.5, 0, 0.558558, 0, 1.39213, -41.205, 3.84342, -24.0791 )
+
+[node name="stones26" parent="." instance=ExtResource( 1 )]
+transform = Transform( -1.49849, 0, 0.0673385, 0, 3, 0, -0.0673385, 0, -1.49849, -26.0829, -2.14454, -24.3701 )
+
+[node name="stones19" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.511891, 0.150681, 2.95216, 0.142804, 2.99134, -0.177442, -2.95255, 0.170803, 0.50324, -42.6295, 3.22174, -13.6905 )
+
+[node name="stones27" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.45815, 0, 1.71974, 0, 3, 0, -1.71974, 0, 2.45815, -37.9976, 3.8922, -22.3657 )
+
+[node name="stones20" parent="." instance=ExtResource( 1 )]
+transform = Transform( 2.98732, 0, -0.275496, 0, 3, 0, 0.275496, 0, 2.98732, -29.0881, 3.5571, -22.1817 )

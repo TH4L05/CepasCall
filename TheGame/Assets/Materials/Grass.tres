@@ -1,0 +1,19 @@
+[gd_resource type="SpatialMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Textures/Ground/ground_menu_texture.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/Ground/ground_menu_texture_normal.png" type="Texture" id=2]
+
+[resource]
+vertex_color_use_as_albedo = true
+params_specular_mode = 4
+albedo_texture = ExtResource( 1 )
+metallic_specular = 0.2
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 0.0
+emission_operator = 0
+emission_on_uv2 = false
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource( 2 )
+uv1_scale = Vector3( 15, 15, 1 )

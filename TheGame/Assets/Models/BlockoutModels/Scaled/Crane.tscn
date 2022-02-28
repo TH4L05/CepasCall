@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 4.0
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 4, 1.5, 3 )
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 1, 1.5, 1 )
+
+[sub_resource type="CylinderMesh" id=4]
+top_radius = 0.001
+bottom_radius = 1.2
+
+[sub_resource type="CapsuleMesh" id=5]
+radius = 0.4
+mid_height = 4.279
+
+[node name="Crane" type="StaticBody"]
+transform = Transform( 0.723063, 0, 0.690781, 0, 1, 0, -0.690781, 0, 0.723063, -27.3051, -0.648691, 23.2195 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( -0.585035, 0.278247, 0.761783, 0.691264, 0.66231, 0.288964, -0.424133, 0.695647, -0.579817, 1.25424, 4.1823, 2.88824 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( -0.458231, 0, 0.888833, 0, 1, 0, -0.888833, 0, -0.458231, 0.695114, 2.28773, 0.268332 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( -0.456508, 0, 0.88972, 0, 1, 0, -0.88972, 0, -0.456508, 1.98374, 3.62183, 0.753969 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="MeshInstance6" type="MeshInstance" parent="."]
+transform = Transform( 0.0743521, 0, 0.997232, 0, 1, 0, -0.997232, 0, 0.0743521, 0.657883, 1.94138, -0.203562 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( 0.988511, -0.0003166, -0.15115, 0.000369554, 1, 0.000322316, 0.15115, -0.000374462, 0.988511, 1.85613, 0.892182, 0.106011 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="MeshInstance5" type="MeshInstance" parent="."]
+transform = Transform( 0.988511, -0.0003166, -0.15115, 0.000369554, 1, 0.000322316, 0.15115, -0.000374462, 0.988511, -0.389656, 0.891228, -0.177095 )
+mesh = SubResource( 5 )
+material/0 = null

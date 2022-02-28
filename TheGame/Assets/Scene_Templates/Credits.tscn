@@ -1,0 +1,548 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Assets/Scripts/Credits.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Fonts/LargeMenuText.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_nico_small.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_thomas_small.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_berkay_small.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_sarafina_small.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_brook_small.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_kaja_small.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_enno_small.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_justin_small.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Textures/Credits/illu_team_jeremy_small.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Fonts/credits.tres" type="DynamicFont" id=12]
+[ext_resource path="res://Assets/Fonts/AkayaTelivigala-Regular.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Assets/Audio/Sound/Menu/kaja/sound_menu_button.click.wav" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Audio/Sound/Menu/kaja/sound_menu_button.snap.wav" type="AudioStream" id=16]
+[ext_resource path="res://Assets/Fonts/credits_name.tres" type="DynamicFont" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+size = 145
+use_filter = true
+font_data = ExtResource( 13 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[node name="Credits" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back1" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1081.0
+color = Color( 0.117188, 0.117188, 0.117188, 0.470588 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name_Team" type="Label" parent="."]
+margin_top = -8.0
+margin_right = 1920.0
+margin_bottom = 181.0
+custom_fonts/font = SubResource( 1 )
+text = "Onionheads"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Team" type="CenterContainer" parent="."]
+margin_left = 64.0
+margin_top = 151.0
+margin_right = 1912.0
+margin_bottom = 983.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Team"]
+margin_left = 77.0
+margin_top = 7.0
+margin_right = 1771.0
+margin_bottom = 825.0
+custom_constants/vseparation = 40
+custom_constants/hseparation = 125
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_1" type="HBoxContainer" parent="Team/GridContainer"]
+margin_right = 483.0
+margin_bottom = 246.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_1"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_1/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 3 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_1"]
+margin_left = 188.0
+margin_right = 436.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_1/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 248.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_1/CenterContainer_Right/VBoxContainer"]
+margin_right = 248.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Nico"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_1/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 248.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "Production,
+Level Design, 
+Game Design"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_2" type="HBoxContainer" parent="Team/GridContainer"]
+margin_left = 608.0
+margin_right = 1141.0
+margin_bottom = 246.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_2"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_2/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 8 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_2"]
+margin_left = 188.0
+margin_right = 533.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_2/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 345.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_2/CenterContainer_Right/VBoxContainer"]
+margin_right = 345.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Kaja"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_2/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 345.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "Lead Game Design, 
+Level Design,
+Sound Design"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_3" type="HBoxContainer" parent="Team/GridContainer"]
+margin_left = 1266.0
+margin_right = 1694.0
+margin_bottom = 246.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_3"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_3/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_3"]
+margin_left = 188.0
+margin_right = 412.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_3/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 224.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_3/CenterContainer_Right/VBoxContainer"]
+margin_right = 224.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Thomas"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_3/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 224.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "Lead 
+Programming
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_4" type="HBoxContainer" parent="Team/GridContainer"]
+margin_top = 286.0
+margin_right = 483.0
+margin_bottom = 532.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_4"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_4/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 6 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_4"]
+margin_left = 188.0
+margin_right = 373.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_4/CenterContainer_Right"]
+margin_top = 13.0
+margin_right = 185.0
+margin_bottom = 232.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_4/CenterContainer_Right/VBoxContainer"]
+margin_right = 185.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Sarafina"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_4/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 185.0
+margin_bottom = 219.0
+custom_fonts/font = ExtResource( 12 )
+text = "Lead Art,
+Animation,
+2D Art
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_5" type="HBoxContainer" parent="Team/GridContainer"]
+margin_left = 608.0
+margin_top = 286.0
+margin_right = 1141.0
+margin_bottom = 532.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_5"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_5/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 7 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_5"]
+margin_left = 188.0
+margin_right = 517.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_5/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 329.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_5/CenterContainer_Right/VBoxContainer"]
+margin_right = 329.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Brook"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_5/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 329.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "Concept Art,
+Animation,Rigging,
+VFX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_6" type="HBoxContainer" parent="Team/GridContainer"]
+margin_left = 1266.0
+margin_top = 286.0
+margin_right = 1694.0
+margin_bottom = 532.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_6"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="TextureRect" type="TextureRect" parent="Team/GridContainer/Member_6/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 5 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_6"]
+margin_left = 188.0
+margin_right = 428.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_6/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 240.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_6/CenterContainer_Right/VBoxContainer"]
+margin_right = 240.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Berkay"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_6/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 240.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "Concept Art, 
+UI,
+Programming"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_7" type="HBoxContainer" parent="Team/GridContainer"]
+margin_top = 572.0
+margin_right = 483.0
+margin_bottom = 818.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_7"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_7/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 9 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_7"]
+margin_left = 188.0
+margin_right = 483.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_7/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 295.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_7/CenterContainer_Right/VBoxContainer"]
+margin_right = 295.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Enno"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_7/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 295.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "3D Art,
+Environment Art,
+Lighting"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_8" type="HBoxContainer" parent="Team/GridContainer"]
+margin_left = 608.0
+margin_top = 572.0
+margin_right = 1141.0
+margin_bottom = 818.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_8"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_8/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 10 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_8"]
+margin_left = 188.0
+margin_right = 486.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_8/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 298.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_8/CenterContainer_Right/VBoxContainer"]
+margin_right = 298.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Justin"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_8/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 298.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "3D Art,
+3D Character Art
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Member_9" type="HBoxContainer" parent="Team/GridContainer"]
+margin_left = 1266.0
+margin_top = 572.0
+margin_right = 1694.0
+margin_bottom = 818.0
+
+[node name="CenterContainer_Left" type="CenterContainer" parent="Team/GridContainer/Member_9"]
+margin_right = 184.0
+margin_bottom = 246.0
+
+[node name="Picture" type="TextureRect" parent="Team/GridContainer/Member_9/CenterContainer_Left"]
+margin_right = 184.0
+margin_bottom = 246.0
+texture = ExtResource( 11 )
+
+[node name="CenterContainer_Right" type="CenterContainer" parent="Team/GridContainer/Member_9"]
+margin_left = 188.0
+margin_right = 372.0
+margin_bottom = 246.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Team/GridContainer/Member_9/CenterContainer_Right"]
+margin_top = 31.0
+margin_right = 184.0
+margin_bottom = 214.0
+custom_constants/separation = 10
+
+[node name="Name" type="Label" parent="Team/GridContainer/Member_9/CenterContainer_Right/VBoxContainer"]
+margin_right = 184.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 17 )
+text = "Jeremy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Task" type="Label" parent="Team/GridContainer/Member_9/CenterContainer_Right/VBoxContainer"]
+margin_top = 78.0
+margin_right = 184.0
+margin_bottom = 183.0
+custom_fonts/font = ExtResource( 12 )
+text = "Composing
+
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+margin_top = 968.0
+margin_right = 1920.0
+margin_bottom = 1088.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CenterContainer"]
+margin_left = 780.0
+margin_top = 19.0
+margin_right = 1139.0
+margin_bottom = 101.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/disabled = SubResource( 5 )
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.431373, 0.431373, 0.431373, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 0.92549, 0.52549, 0.847059, 1 )
+text = "Back to Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioSnap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -10.0
+pitch_scale = 0.87
+bus = "Sound"
+
+[node name="AudioClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -10.0
+bus = "Sound"
+
+[connection signal="mouse_entered" from="CenterContainer/Button" to="." method="_on_Button_mouse_entered"]
+[connection signal="pressed" from="CenterContainer/Button" to="." method="_on_Button_pressed"]

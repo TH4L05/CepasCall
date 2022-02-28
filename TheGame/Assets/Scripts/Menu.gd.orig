@@ -1,0 +1,109 @@
+extends Spatial
+
+var option = false
+var sound_volume = 0.0
+var music_volume = 0.0
+var hover_positions :Array = [Vector2(136,456), Vector2(136,573), Vector2(136,672), Vector2(136,771)]
+var cursor = load("res://Assets/Textures/Cursor/MenuCursor_50x50_darkpink_01.png")
+var cursor_hover = load("res://Assets/Textures/Cursor/MenuCursor_50x50_pink_01.png")
+
+func _ready():
+	
+	GlobalVariables.keys = $Options.keys
+	print(GlobalVariables.keys)
+	
+	Input.set_custom_mouse_cursor(cursor)
+	AudioServer.set_bus_volume_db(2,GlobalVariables.music_volume)
+	AudioServer.set_bus_volume_db(3,GlobalVariables.sound_volume)
+	$Credits/CenterContainer/Button.connect("pressed",self,"credits_to_main")
+	$Options/Buttons/ButtonOptions_Return.connect("pressed",self,"options_to_main")
+
+func _on_Button_Play_pressed():
+	$AudioClick.play()
+	$AnimationPlayerMain.play("anim_start_game")
+
+func _on_Button_Options_pressed():
+	$AudioClick.play()
+	option = true
+	$AnimationPlayerMain.play("anim_show_options_menu")
+
+func _on_Button_Credits_pressed():
+	$AudioClick.play()
+	$Credits.visible = true
+	$AnimationPlayerMain.play("anim_show_credits")
+
+func _on_Button_Quit_pressed():
+	$AudioClick.play()
+	get_tree().quit()
+
+#*************************************************************
+
+func _on_Button_Play_mouse_entered():
+	$AudioSnap.play()
+	$Main/Hover.rect_position = hover_positions[0]
+	$Main/Hover.visible = true
+	Input.set_custom_mouse_cursor(cursor_hover)
+
+func _on_Button_Play_mouse_exited():
+	Input.set_custom_mouse_cursor(cursor)
+	$Main/Hover.visible = false
+
+func _on_Button_Options_mouse_entered():
+	$AudioSnap.play()
+	$Main/Hover.rect_position = hover_positions[1]
+	$Main/Hover.visible = true
+	Input.set_custom_mouse_cursor(cursor_hover)
+
+func _on_Button_Options_mouse_exited():
+	Input.set_custom_mouse_cursor(cursor)
+	$Main/Hover.visible = false
+
+func _on_Button_Credits_mouse_entered():
+	$AudioSnap.play()
+	$Main/Hover.rect_position = hover_positions[2]
+	$Main/Hover.visible = true
+	Input.set_custom_mouse_cursor(cursor_hover)
+
+func _on_Button_Credits_mouse_exited():
+	Input.set_custom_mouse_cursor(cursor)
+	$Main/Hover.visible = false
+
+func _on_Button_Quit_mouse_entered():
+	$AudioSnap.play()
+	$Main/Hover.rect_position = hover_positions[3]
+	$Main/Hover.visible = true
+	Input.set_custom_mouse_cursor(cursor_hover)
+
+func _on_Button_Quit_mouse_exited():
+	Input.set_custom_mouse_cursor(cursor)
+	$Main/Hover.visible = false
+
+
+#*************************************************************
+
+func load_scene():
+	get_tree().change_scene("res://Assets/Scene_Level/The_World.tscn")
+
+func tween_slide():
+	$PlayerDummy.translation = Vector3(2, -0.01, 68.5)
+	var endpoint = $PlayerDummy.translation + Vector3(0, 0, -100)
+	$Tween.interpolate_property($PlayerDummy,"translation",$PlayerDummy.translation,endpoint,112,Tween.TRANS_LINEAR,0)
+	$Tween.start()
+
+func tween_stop():
+	$Tween.stop_all()
+
+#*************************************************************
+
+func main():
+	$AnimationPlayerMain.play("anim_menu")
+
+func credits_to_main():
+	$AnimationPlayerMain.play("anim_credits_to_main")
+	yield($AnimationPlayerMain,"animation_finished")
+	main()
+	
+func options_to_main():
+	$AnimationPlayerMain.play("anim_options_to_main")
+	yield($AnimationPlayerMain,"animation_finished")
+	main()

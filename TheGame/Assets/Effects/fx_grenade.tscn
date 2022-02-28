@@ -1,0 +1,406 @@
+[gd_scene load_steps=47 format=2]
+
+[ext_resource path="res://Assets/Textures/VFX/leaf.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Textures/VFX/particle_spark_4.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Textures/VFX/particle_ring.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "anim_emitt"
+length = 2.0
+step = 0.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("main_explosion:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.214576 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("main_explosion:draw_pass_1:material:shader_param/dissolve")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -0.163, -0.163, 0.281 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.32751 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.99643 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("flash:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.00752985, 0.352607 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("ring:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.214576, 0.465541 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Curve" id=2]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 1 ), 0.0, 656.538, 0, 0, Vector2( 0.506329, 311.727 ), 447.214, 447.214, 0, 0, Vector2( 0.987342, 360 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=3]
+curve = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 0 ), 0.0, 5.11705, 0, 0, Vector2( 0.537975, 0.998864 ), 0.0269319, 0.0269319, 0, 0, Vector2( 1, 0 ), -6.62075, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 0.39
+direction = Vector3( 0, 1, 0 )
+spread = 81.13
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 6.59
+angular_velocity = 124.8
+angular_velocity_curve = SubResource( 3 )
+linear_accel = -0.59
+damping = 10.0
+angle = 324.5
+angle_random = 1.0
+scale = 0.3
+scale_random = 0.22
+scale_curve = SubResource( 5 )
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.282353, 0.968627, 0.160784, 1 )
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=8]
+material = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 0 ), 0.0, 3.7619, 0, 0, Vector2( 0.303797, 1 ), 0.897727, 0.897727, 0, 0, Vector2( 0.550633, 1 ), -1.8281, -1.8281, 0, 0, Vector2( 1, 0 ), -1.49621, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+gravity = Vector3( 0, 0, 0 )
+scale_curve = SubResource( 10 )
+
+[sub_resource type="VisualShaderNodeColorConstant" id=12]
+output_port_for_preview = 0
+constant = Color( 0.382813, 1, 0, 1 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=13]
+default_input_values = [ 0, 0.0, 1, 0.5 ]
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarOp" id=14]
+output_port_for_preview = 0
+default_input_values = [ 0, 1.0, 1, 0.0 ]
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=15]
+output_port_for_preview = 0
+function = 15
+
+[sub_resource type="VisualShaderNodeVectorOp" id=16]
+output_port_for_preview = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeColorConstant" id=17]
+constant = Color( 0.242462, 1, 0.0585938, 1 )
+
+[sub_resource type="VisualShaderNodeScalarUniform" id=18]
+uniform_name = "dissolve"
+
+[sub_resource type="VisualShaderNodeInput" id=19]
+output_port_for_preview = 0
+input_name = "uv"
+
+[sub_resource type="OpenSimplexNoise" id=20]
+
+[sub_resource type="NoiseTexture" id=21]
+width = 258
+height = 258
+seamless = true
+noise = SubResource( 20 )
+
+[sub_resource type="VisualShaderNodeTexture" id=22]
+texture = SubResource( 21 )
+
+[sub_resource type="VisualShaderNodeScalarOp" id=23]
+output_port_for_preview = 0
+operator = 1
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=24]
+output_port_for_preview = 0
+function = 15
+
+[sub_resource type="VisualShader" id=25]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_alpha_prepass, specular_schlick_ggx;
+
+uniform sampler2D tex_frg_7;
+uniform float dissolve;
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:10
+	vec3 n_out10p0 = vec3(0.382813, 1.000000, 0.000000);
+	float n_out10p1 = 1.000000;
+
+// Input:2
+	vec3 n_out2p0 = vec3(UV, 0.0);
+
+// Texture:7
+	vec4 tex_frg_7_read = texture(tex_frg_7, n_out2p0.xy);
+	vec3 n_out7p0 = tex_frg_7_read.rgb;
+	float n_out7p1 = tex_frg_7_read.a;
+
+// ScalarUniform:16
+	float n_out16p0 = dissolve;
+
+// ScalarOp:8
+	float n_out8p0 = dot(n_out7p0, vec3(0.333333, 0.333333, 0.333333)) - n_out16p0;
+
+// ScalarFunc:9
+	float n_out9p0 = round(n_out8p0);
+
+// ScalarOp:11
+	float n_in11p1 = 0.50000;
+	float n_out11p0 = n_out8p0 - n_in11p1;
+
+// ScalarOp:12
+	float n_in12p0 = 1.00000;
+	float n_out12p0 = n_in12p0 - n_out11p0;
+
+// ScalarFunc:13
+	float n_out13p0 = round(n_out12p0);
+
+// Color:15
+	vec3 n_out15p0 = vec3(0.242462, 1.000000, 0.058594);
+	float n_out15p1 = 1.000000;
+
+// VectorOp:14
+	vec3 n_out14p0 = vec3(n_out13p0) * n_out15p0;
+
+// Output:0
+	ALBEDO = n_out10p0;
+	ALPHA = n_out9p0;
+	EMISSION = n_out14p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -226, -115 )
+modes/blend = 1
+modes/depth_draw = 3
+nodes/fragment/0/position = Vector2( 1340, 140 )
+nodes/fragment/2/node = SubResource( 19 )
+nodes/fragment/2/position = Vector2( 80, 60 )
+nodes/fragment/7/node = SubResource( 22 )
+nodes/fragment/7/position = Vector2( 240, 20 )
+nodes/fragment/8/node = SubResource( 23 )
+nodes/fragment/8/position = Vector2( 400, 220 )
+nodes/fragment/9/node = SubResource( 24 )
+nodes/fragment/9/position = Vector2( 560, 120 )
+nodes/fragment/10/node = SubResource( 12 )
+nodes/fragment/10/position = Vector2( 660, -80 )
+nodes/fragment/11/node = SubResource( 13 )
+nodes/fragment/11/position = Vector2( 560, 360 )
+nodes/fragment/12/node = SubResource( 14 )
+nodes/fragment/12/position = Vector2( 740, 360 )
+nodes/fragment/13/node = SubResource( 15 )
+nodes/fragment/13/position = Vector2( 900, 320 )
+nodes/fragment/14/node = SubResource( 16 )
+nodes/fragment/14/position = Vector2( 1118, 275 )
+nodes/fragment/15/node = SubResource( 17 )
+nodes/fragment/15/position = Vector2( 960, 520 )
+nodes/fragment/16/node = SubResource( 18 )
+nodes/fragment/16/position = Vector2( 199, 333 )
+nodes/fragment/connections = PoolIntArray( 2, 0, 7, 0, 7, 0, 8, 0, 8, 0, 9, 0, 9, 0, 0, 1, 10, 0, 0, 0, 8, 0, 11, 0, 11, 0, 12, 1, 12, 0, 13, 0, 13, 0, 14, 0, 15, 0, 14, 1, 14, 0, 0, 5, 16, 0, 8, 1 )
+
+[sub_resource type="ShaderMaterial" id=26]
+shader = SubResource( 25 )
+shader_param/dissolve = 0.281
+
+[sub_resource type="SphereMesh" id=27]
+material = SubResource( 26 )
+
+[sub_resource type="Gradient" id=28]
+colors = PoolColorArray( 1, 1, 1, 1, 0.541176, 1, 0.145098, 0.145098 )
+
+[sub_resource type="GradientTexture" id=29]
+gradient = SubResource( 28 )
+
+[sub_resource type="Curve" id=30]
+_data = [ Vector2( 0, 0 ), 0.0, 29.3258, 0, 0, Vector2( 0.120253, 0.984091 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -2.94113, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=31]
+curve = SubResource( 30 )
+
+[sub_resource type="ParticlesMaterial" id=32]
+gravity = Vector3( 0, 0, 0 )
+scale = 3.0
+scale_curve = SubResource( 31 )
+color_ramp = SubResource( 29 )
+
+[sub_resource type="SpatialMaterial" id=33]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+emission_enabled = true
+emission = Color( 0.462745, 1, 0.0745098, 1 )
+emission_energy = 0.99
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=34]
+material = SubResource( 33 )
+
+[sub_resource type="Gradient" id=35]
+offsets = PoolRealArray( 0, 0.503704, 1 )
+colors = PoolColorArray( 0.741176, 0.741176, 0.741176, 0.145098, 1, 1, 1, 0.752941, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=36]
+gradient = SubResource( 35 )
+
+[sub_resource type="Curve" id=37]
+_data = [ Vector2( 0, 0 ), 0.0, 5.12521, 0, 0, Vector2( 0.683544, 1 ), 0.0283495, 0.0283495, 0, 0, Vector2( 1, 0.852273 ), -1.02597, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=38]
+curve = SubResource( 37 )
+
+[sub_resource type="ParticlesMaterial" id=39]
+gravity = Vector3( 0, 0, 0 )
+scale = 3.97
+scale_curve = SubResource( 38 )
+color_ramp = SubResource( 36 )
+
+[sub_resource type="Gradient" id=40]
+offsets = PoolRealArray( 0, 0.496599, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=41]
+gradient = SubResource( 40 )
+
+[sub_resource type="SpatialMaterial" id=42]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource( 3 )
+emission_enabled = true
+emission = Color( 0.2, 1, 0.121569, 1 )
+emission_energy = 3.29
+emission_operator = 0
+emission_on_uv2 = false
+emission_texture = SubResource( 41 )
+
+[sub_resource type="QuadMesh" id=43]
+material = SubResource( 42 )
+
+[node name="fx_grenade" type="Spatial"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "anim_emitt"
+anims/anim_emitt = SubResource( 1 )
+
+[node name="Particles" type="Particles" parent="."]
+emitting = false
+amount = 12
+lifetime = 0.65
+one_shot = true
+explosiveness = 1.0
+randomness = 0.4
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 8 )
+
+[node name="main_explosion" type="Particles" parent="."]
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource( 11 )
+draw_pass_1 = SubResource( 27 )
+
+[node name="flash" type="Particles" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+process_material = SubResource( 32 )
+draw_pass_1 = SubResource( 34 )
+
+[node name="ring" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, -0.00929785, 0.0681783, 0.00614071 )
+emitting = false
+amount = 1
+lifetime = 0.66
+one_shot = true
+process_material = SubResource( 39 )
+draw_pass_1 = SubResource( 43 )

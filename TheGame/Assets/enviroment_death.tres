@@ -1,0 +1,20 @@
+[gd_resource type="Environment" format=2]
+
+[resource]
+background_mode = 1
+background_color = Color( 1, 0.847059, 0.847059, 1 )
+background_energy = 3.0
+fog_enabled = true
+fog_color = Color( 0.984314, 0.843137, 0.843137, 1 )
+fog_sun_color = Color( 1, 1, 1, 1 )
+fog_depth_begin = 0.0
+fog_depth_end = 6.0
+tonemap_mode = 2
+ss_reflections_enabled = true
+ssao_enabled = true
+dof_blur_far_distance = 1.82
+dof_blur_near_distance = 2.05
+glow_enabled = true
+glow_strength = 0.65
+glow_bloom = 0.1
+glow_blend_mode = 1

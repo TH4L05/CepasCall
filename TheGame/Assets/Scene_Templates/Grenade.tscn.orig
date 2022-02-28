@@ -1,0 +1,152 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Scripts/Granade.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Effects/fx_grenade.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Audio/Sound/Quick Reverb Fart   Sound Effect HD (192kbit_AAC).wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Effects/crater.tscn" type="PackedScene" id=4]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.0156863, 0.533333, 0, 1 )
+metallic = 0.81
+roughness = 0.5
+emission_enabled = true
+emission = Color( 0.305882, 0.898039, 0.0666667, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="SphereMesh" id=2]
+material = SubResource( 1 )
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape" id=3]
+radius = 0.1
+
+[sub_resource type="SphereShape" id=4]
+radius = 1.5
+
+[sub_resource type="Animation" id=5]
+resource_name = "anim_explode"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Audio_Explode:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "anim_spawn"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BlastRadius/CollisionShape:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MeshInstance:mesh:material:emission_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 2.0, 6.0, 2.0 ]
+}
+
+[node name="Grenade" type="RigidBody"]
+collision_layer = 2048
+collision_mask = 142
+contacts_reported = 1
+contact_monitor = true
+can_sleep = false
+linear_damp = 3.0
+script = ExtResource( 1 )
+particle = ExtResource( 2 )
+decal = ExtResource( 4 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 3 )
+
+[node name="BlastRadius" type="Area" parent="." groups=[
+"Grenade",
+]]
+input_ray_pickable = false
+collision_layer = 2048
+collision_mask = 2
+
+[node name="CollisionShape" type="CollisionShape" parent="BlastRadius"]
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "anim_spawn"
+anims/anim_explode = SubResource( 5 )
+anims/anim_spawn = SubResource( 6 )
+
+[node name="Audio_Explode" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 3 )
+unit_db = 10.0
+unit_size = 30.0
+bus = "Sound"
+
+[connection signal="body_entered" from="." to="." method="_on_Grenade_body_entered"]
+[connection signal="area_entered" from="BlastRadius" to="." method="_on_BlastRadius_area_entered"]

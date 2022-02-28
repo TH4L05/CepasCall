@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/kenney_particle_pack/circle_01.png" type="Texture" id=2]
+[ext_resource path="res://addons/kenney_particle_pack/trace_01.png" type="Texture" id=3]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+albedo_color = Color( 0.572549, 0.788235, 0.101961, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 4, 4 )
+
+[sub_resource type="Curve" id=3]
+max_value = 1.25
+_data = [ Vector2( 0, 0.15483 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 1.25 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+params_cull_mode = 2
+params_billboard_mode = 2
+albedo_color = Color( 0.105882, 0.858824, 0.823529, 1 )
+albedo_texture = ExtResource( 3 )
+emission_enabled = true
+emission = Color( 0.572549, 0.788235, 0.101961, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.244019, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.889952, 0.482102 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Aura" type="Spatial"]
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+amount = 3
+lifetime = 3.0
+speed_scale = 0.45
+mesh = SubResource( 2 )
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+scale_amount = 0.75
+scale_amount_curve = SubResource( 3 )
+
+[node name="CPUParticles2" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+amount = 16
+speed_scale = 0.65
+mesh = SubResource( 5 )
+emission_shape = 2
+emission_box_extents = Vector3( 0.1, 0, 0.1 )
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 1, 0 )
+initial_velocity = 0.75
+scale_amount_curve = SubResource( 6 )

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Textures/VFX/butterfly_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Materials/outline.material" type="Material" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+next_pass = ExtResource( 2 )
+flags_transparent = true
+params_blend_mode = 1
+params_cull_mode = 2
+params_billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+albedo_color = Color( 0, 0, 0, 1 )
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.666667, 0.447059, 0.705882, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00393701, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.704724, 0.736364 ), -1.28283, -1.28283, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="fx_buttfly_group" type="CPUParticles"]
+cast_shadow = 0
+generate_lightmap = false
+amount = 16
+local_coords = false
+mesh = SubResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 1 )
+initial_velocity = 2.0
+linear_accel = -2.0
+tangential_accel = -35.0
+damping = 35.0
+scale_amount = 0.25
+scale_amount_random = 0.2
+scale_amount_curve = SubResource( 3 )
+anim_speed = 3.0

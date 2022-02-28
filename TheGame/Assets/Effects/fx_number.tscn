@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Textures/Final/01.png" type="Texture" id=1]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+params_billboard_mode = 3
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = true
+albedo_color = Color( 0.0627451, 0.384314, 0.0431373, 1 )
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.054902, 0.654902, 0.0784314, 1 )
+emission_energy = 6.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=2]
+material = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.204724, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="fx_number" type="CPUParticles" parent="."]
+transform = Transform( 0.613996, 0, -0.789309, 0, 1, 0, 0.789309, 0, 0.613996, 0, 0, 0 )
+amount = 32
+lifetime = 0.75
+speed_scale = 0.2
+mesh = SubResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 0, 0 )
+spread = 0.0
+scale_amount = 0.1
+scale_amount_curve = SubResource( 3 )
+anim_speed = 5.0
+
+[node name="fx_number2" type="CPUParticles" parent="."]
+transform = Transform( 0.613996, 0, -0.789309, 0, 1, 0, 0.789309, 0, 0.613996, -1, 0, 0 )
+amount = 32
+lifetime = 0.75
+speed_scale = 0.2
+mesh = SubResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 0, 0 )
+flag_align_y = true
+scale_amount = 0.1
+scale_amount_curve = SubResource( 3 )
+anim_speed = 5.0
+
+[node name="fx_number4" type="CPUParticles" parent="."]
+transform = Transform( 0.613996, 0, -0.789309, 0, 1, 0, 0.789309, 0, 0.613996, -2, 0, 0 )
+amount = 32
+lifetime = 0.75
+speed_scale = 0.2
+mesh = SubResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 0, 0 )
+flag_align_y = true
+scale_amount = 0.1
+scale_amount_curve = SubResource( 3 )
+anim_speed = 5.0
+
+[node name="fx_number3" type="CPUParticles" parent="."]
+transform = Transform( 0.613996, 0, -0.789309, 0, 1, 0, 0.789309, 0, 0.613996, 1, 0, 0 )
+amount = 32
+lifetime = 0.75
+speed_scale = 0.2
+mesh = SubResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 0, 0 )
+flag_align_y = true
+scale_amount = 0.1
+scale_amount_curve = SubResource( 3 )
+anim_speed = 5.0
+
+[node name="fx_number5" type="CPUParticles" parent="."]
+transform = Transform( 0.613996, 0, -0.789309, 0, 1, 0, 0.789309, 0, 0.613996, 2, 0, 0 )
+amount = 32
+lifetime = 0.75
+speed_scale = 0.2
+mesh = SubResource( 2 )
+emission_shape = 2
+emission_box_extents = Vector3( 1, 0, 0 )
+flag_align_y = true
+scale_amount = 0.1
+scale_amount_curve = SubResource( 3 )
+anim_speed = 5.0

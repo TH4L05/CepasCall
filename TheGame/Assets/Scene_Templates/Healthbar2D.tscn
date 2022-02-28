@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Textures/HUD/cirle_progress.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Scripts/Healthbar2D.gd" type="Script" id=2]
+
+[node name="Healthbar2D" type="TextureProgress"]
+margin_right = 80.0
+margin_bottom = 80.0
+value = 100.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 1 )
+fill_mode = 4
+tint_under = Color( 0.0980392, 0.0980392, 0.0980392, 0.65098 )
+tint_progress = Color( 0.878431, 0.333333, 0, 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

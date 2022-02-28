@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Materials/new_spheremesh.tres" type="SphereMesh" id=1]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0 ), 0.0, -6.62823, 0, 0, Vector2( 0.122605, 0.792045 ), 0.692046, 2.71169, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 1, 0 )
+damping = 0.5
+scale = 0.1
+scale_random = 0.1
+scale_curve = SubResource( 2 )
+
+[node name="fx_smoke_b" type="Particles"]
+lifetime = 4.0
+visibility_aabb = AABB( -2.00001, -2.00001, -2.00001, 4.00002, 13.2878, 4.00002 )
+local_coords = false
+process_material = SubResource( 3 )
+draw_pass_1 = ExtResource( 1 )

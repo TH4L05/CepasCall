@@ -1,0 +1,177 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Assets/Models/export files/tutorial_sign.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Models/export files/tutorial_plank.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Scene_Templates/Signtext.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Textures/Signs/dash_sign.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/Signs/shot_plank.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Textures/Signs/run_plank.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Textures/Signs/grenade_sign.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Textures/Signs/grenade_plank.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Textures/Signs/run_sign.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Textures/Signs/shot_sign.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Textures/Signs/dash_plank.png" type="Texture" id=13]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 9 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 1.35, 0.8 )
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+flags_unshaded = true
+albedo_color = Color( 0.968627, 0.964706, 0.964706, 1 )
+albedo_texture = ExtResource( 11 )
+
+[sub_resource type="PlaneMesh" id=4]
+material = SubResource( 3 )
+size = Vector2( 1.4, 0.8 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 12 )
+
+[sub_resource type="PlaneMesh" id=6]
+material = SubResource( 5 )
+size = Vector2( 1.3, 0.8 )
+
+[sub_resource type="SpatialMaterial" id=7]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 6 )
+
+[sub_resource type="PlaneMesh" id=8]
+material = SubResource( 7 )
+size = Vector2( 1.6, 1 )
+
+[sub_resource type="SpatialMaterial" id=9]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 8 )
+
+[sub_resource type="PlaneMesh" id=10]
+material = SubResource( 9 )
+size = Vector2( 0.35, 0.22 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="PlaneMesh" id=12]
+material = SubResource( 11 )
+size = Vector2( 0.4, 0.2 )
+
+[sub_resource type="SpatialMaterial" id=13]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 13 )
+
+[sub_resource type="PlaneMesh" id=14]
+material = SubResource( 13 )
+size = Vector2( 0.43, 0.22 )
+
+[sub_resource type="SpatialMaterial" id=15]
+flags_transparent = true
+flags_unshaded = true
+albedo_texture = ExtResource( 10 )
+
+[sub_resource type="PlaneMesh" id=16]
+material = SubResource( 15 )
+size = Vector2( 0.45, 0.19 )
+
+[node name="Tutorial" type="Node"]
+
+[node name="tutorial_sign" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.64076, 1.14363, 4.99898e-08, 0, -8.74228e-08, 2, 1.14363, -1.64076, -7.17201e-08, -2.192, 0.05, 82.731 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_sign"]
+transform = Transform( 0.50001, 1.10242e-10, -0.00252178, -0.00280225, -3.39284e-13, -0.555536, -1.10232e-10, 0.5, 3.05533e-13, -0.0160522, 1.04761, 0.0567544 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="SignLabel" parent="tutorial_sign/MeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 2.13163e-14, -7.10543e-15, -1.62921e-07, 1, 0, -1, -1.62921e-07, -0.0465927, -1.49012e-08, 0.250988 )
+
+[node name="tutorial_sign2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.67447, 1.0937, 4.7807e-08, 0, -8.74229e-08, 2, 1.0937, -1.67447, -7.31931e-08, -1.97227, 0.05, 88.1702 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_sign2"]
+transform = Transform( 0.499966, 0.00403633, -0.00203887, -0.00440501, -0.00646441, -0.560229, -0.0042626, 0.499967, 0.00684187, -0.0304813, 1.0451, 0.0566081 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="SignLabel" parent="tutorial_sign2/MeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, -2.38419e-07, 1.86265e-09, -4.65661e-10, -1.6205e-07, 0.999998, 0, -0.999998, -1.61119e-07, 0.00146484, 0.0036661, -0.267075 )
+event = "UP"
+
+[node name="SignLabel2" parent="tutorial_sign2/MeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, -4.65661e-10, -1.61584e-07, 0.999997, 0, -0.999997, -1.6205e-07, 0.450378, 0.00414562, -0.0224609 )
+event = "RIGHT"
+
+[node name="SignLabel3" parent="tutorial_sign2/MeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, -1.19209e-07, 9.31323e-10, -4.65661e-10, -1.61119e-07, 0.999996, 0, -0.999996, -1.61119e-07, 0.0173798, -0.00330767, 0.252373 )
+event = "DOWN"
+
+[node name="SignLabel4" parent="tutorial_sign2/MeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, -1.19209e-07, 3.72529e-09, -4.65661e-10, -1.61584e-07, 0.999994, 0, -0.999995, -1.61119e-07, -0.421692, -0.00357512, -0.00167084 )
+event = "LEFT"
+
+[node name="tutorial_sign3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.6999, -1.05373, -4.60601e-08, 0, -8.74228e-08, 2, -1.05373, -1.6999, -7.43049e-08, 5.71372, 0.0426267, 86.642 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_sign3"]
+transform = Transform( 0.5, 1.77636e-15, 1.49012e-08, 1.49012e-08, -8.14603e-08, -0.5, 1.06581e-14, 0.5, -8.14604e-08, -0.0184097, 1.04184, 0.0621233 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="tutorial_sign4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.45787, -1.36917, -5.98482e-08, 0, -8.74228e-08, 2, -1.36917, -1.45787, -6.37254e-08, 5.99147, 0.0426267, 79.166 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_sign4"]
+transform = Transform( 0.5, 3.55271e-15, 0, 0, -8.14603e-08, -0.5, -9.76996e-15, 0.5, -8.14603e-08, -0.0325146, 1.03712, 0.0573279 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="SignLabel" parent="tutorial_sign4/MeshInstance" instance=ExtResource( 3 )]
+transform = Transform( 1, -2.98023e-08, 0, 1.24345e-13, -1.62921e-07, 1, -2.98023e-08, -1, -1.62921e-07, 0.0755997, 0, 0.298409 )
+event = "RUN"
+
+[node name="tutorial_plank" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.42172, 0.690653, 0.0087528, -0.013269, 0.0926514, -1.9987, -0.667236, 2.50487, 0.0715155, -0.631203, 0.0285138, 87.7354 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_plank"]
+transform = Transform( 0.999815, 0.0192672, -1.19209e-07, 1.19209e-07, 3.35276e-08, 1, 0.0192672, -0.999814, 3.72529e-08, -0.0214443, 0.0116539, -0.0334487 )
+mesh = SubResource( 10 )
+material/0 = null
+
+[node name="tutorial_plank2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.38538, -0.801152, 3.50197e-08, 0, -8.74228e-08, -2, 0.786642, 2.39048, -1.04491e-07, 4.09971, 0.0536411, 86.2917 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_plank2"]
+transform = Transform( 1, -7.10543e-15, 0, -5.96046e-08, -1.62921e-07, 1, 1.15463e-14, -1, -1.62921e-07, -0.00324917, 0.00590706, -0.0325463 )
+mesh = SubResource( 12 )
+material/0 = null
+
+[node name="tutorial_plank3" parent="." instance=ExtResource( 2 )]
+transform = Transform( -2.50315, -0.196176, 8.57489e-09, 0, -8.74228e-08, -2, 0.207537, -2.51351, 1.09869e-07, 4.25989, 0.0536411, 78.8738 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_plank3"]
+transform = Transform( -1.00001, -3.42336e-10, 0.00287285, -0.00285152, 7.54955e-08, -0.999982, 1.24647e-10, -1, -7.54987e-08, 0.00738525, -0.00947762, -0.0294968 )
+mesh = SubResource( 14 )
+material/0 = null
+
+[node name="tutorial_plank4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 2.16086, -1.29571, 5.66373e-08, 0, -8.74228e-08, -2, 1.28044, 2.16273, -9.45354e-08, -0.698316, 0.0536411, 79.8525 )
+
+[node name="MeshInstance" type="MeshInstance" parent="tutorial_plank4"]
+transform = Transform( 1, 7.10543e-15, -2.98023e-08, -2.98023e-08, -1.62921e-07, 1, 2.66454e-15, -1, -1.62921e-07, 0, 0, -0.0301103 )
+mesh = SubResource( 16 )
+material/0 = null
+
+[node name="Button_Instructions" type="Spatial" parent="."]

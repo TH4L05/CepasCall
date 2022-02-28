@@ -1,0 +1,227 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Assets/Scene_Templates/Healthbar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Effects/fx_explosion_ranged.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Effects/fx_smoke_test.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Models/scene/mesh_enemy_melee.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scripts/Enemy_Melee_Dummy.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Models/scene/flower_02.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Scene_Templates/PickUP.tscn" type="PackedScene" id=7]
+
+[sub_resource type="AnimationNodeAdd2" id=1]
+filter_enabled = true
+filters = [ "Armature/Skeleton:femur.l", "Armature/Skeleton:femur.r", "Armature/Skeleton:foot.l", "Armature/Skeleton:foot.r", "Armature/Skeleton:leg_ik.pole.l", "Armature/Skeleton:leg_ik.pole.r", "Armature/Skeleton:leg_ik.target.l", "Armature/Skeleton:leg_ik.target.r", "Armature/Skeleton:shin.l", "Armature/Skeleton:shin.r" ]
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "anim_enemy_melee_walk"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "anim_enemy_melee_attack"
+
+[sub_resource type="AnimationNodeBlendTree" id=4]
+graph_offset = Vector2( -415.245, -136 )
+nodes/Add2/node = SubResource( 1 )
+nodes/Add2/position = Vector2( 340, 40 )
+nodes/Animation/node = SubResource( 3 )
+nodes/Animation/position = Vector2( -180, 40 )
+"nodes/Animation 2/node" = SubResource( 2 )
+"nodes/Animation 2/position" = Vector2( -180, 180 )
+nodes/output/position = Vector2( 600, 120 )
+node_connections = [ "output", 0, "Add2", "Add2", 0, "Animation", "Add2", 1, "Animation 2" ]
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "anim_melee_death"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "anim_melee_get_hit"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "anim_melee_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "anim_enemy_melee_walk"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "anim_enemy_melee_attack (copy)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/Attack/node = SubResource( 4 )
+states/Attack/position = Vector2( 382, 38 )
+states/Death/node = SubResource( 5 )
+states/Death/position = Vector2( 1143, 44 )
+states/Get_hit/node = SubResource( 6 )
+states/Get_hit/position = Vector2( 654, -79.7 )
+states/Idle/node = SubResource( 7 )
+states/Idle/position = Vector2( 662, 166 )
+states/Walk/node = SubResource( 8 )
+states/Walk/position = Vector2( 846, 38 )
+"states/anim_enemy_melee_attack (copy)/node" = SubResource( 9 )
+"states/anim_enemy_melee_attack (copy)/position" = Vector2( 420, 166 )
+transitions = [ "Get_hit", "Walk", SubResource( 10 ), "Walk", "Get_hit", SubResource( 11 ), "Walk", "Attack", SubResource( 12 ), "Attack", "Walk", SubResource( 13 ), "Attack", "Get_hit", SubResource( 14 ), "Get_hit", "Attack", SubResource( 15 ), "Walk", "Death", SubResource( 16 ), "Get_hit", "Death", SubResource( 17 ), "Idle", "anim_enemy_melee_attack (copy)", SubResource( 18 ) ]
+start_node = "Idle"
+end_node = "anim_enemy_melee_attack (copy)"
+graph_offset = Vector2( 227, -35.459 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
+[sub_resource type="BoxShape" id=21]
+extents = Vector3( 0.424474, 0.308082, 0.989804 )
+
+[sub_resource type="BoxShape" id=22]
+extents = Vector3( 0.65, 1, 0.5 )
+
+[sub_resource type="Animation" id=23]
+length = 2.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("mesh_enemy_melee:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.05, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Healthbar:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "animation"
+tracks/3/path = NodePath("mesh_enemy_melee/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "anim_melee_death" ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "animation"
+tracks/4/path = NodePath("fx_explosion/AnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": PoolStringArray( "process" ),
+"times": PoolRealArray( 0.5 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CollisionShape:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Enemy_Dummy" type="KinematicBody" groups=[
+"Enemy",
+"Enemy_Melee",
+]]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource( 5 )
+dummy_mode = true
+flower = ExtResource( 6 )
+pickup = ExtResource( 7 )
+
+[node name="mesh_enemy_melee" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -3.89414e-07, 0, 1, 0, 3.89414e-07, 0, -1, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 19 )
+anim_player = NodePath("../mesh_enemy_melee/AnimationPlayer")
+active = true
+parameters/playback = SubResource( 20 )
+parameters/Attack/Add2/add_amount = 1.0
+
+[node name="smoke_fx" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.27999, -0.0430648, -0.0528219, -0.0340126, 0.30038, -0.0646046, 0.0626511, -0.0685036, -0.276241, -0.0846817, 1.47368, -0.423008 )
+
+[node name="Particles2" parent="smoke_fx" index="0"]
+transform = Transform( 0.972841, -0.0290554, -0.236504, 0.0497332, 0.9918, 0.115266, 0.234382, -0.151453, 0.959364, 0.0354795, -0.0309958, -0.162794 )
+amount = 16
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.999921, 0.0126009, -2.05296e-09, 0, -1.62921e-07, -1, -0.0126009, 0.999921, -1.62908e-07, -0.15, 1.1, -0.135 )
+shape = SubResource( 21 )
+
+[node name="Hit_Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0 )
+collision_layer = 0
+collision_mask = 2304
+
+[node name="CollisionShape" type="CollisionShape" parent="Hit_Area"]
+shape = SubResource( 22 )
+
+[node name="Healthbar" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, -6.55671e-08, 1, 0, -1.5, -4.37114e-08, 0, 0.1, 0 )
+
+[node name="Position_Spawn_Plant" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/anim_die = SubResource( 23 )
+
+[node name="fx_explosion" parent="." instance=ExtResource( 2 )]
+
+[connection signal="area_entered" from="Hit_Area" to="." method="_on_Hit_Area_area_entered"]
+
+[editable path="mesh_enemy_melee"]
+[editable path="smoke_fx"]
+[editable path="fx_explosion"]

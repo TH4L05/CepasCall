@@ -1,0 +1,172 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Assets/Scripts/Shot_Enemy.gd" type="Script" id=1]
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=1]
+constant = 5.0
+
+[sub_resource type="VisualShaderNodeScalarOp" id=2]
+operator = 2
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=3]
+constant = 35.0
+
+[sub_resource type="VisualShaderNodeScalarFunc" id=4]
+function = 2
+
+[sub_resource type="VisualShaderNodeColorConstant" id=5]
+constant = Color( 0.770046, 0, 1, 1 )
+
+[sub_resource type="VisualShaderNodeColorConstant" id=6]
+constant = Color( 0.972656, 0.0213716, 0.0213716, 1 )
+
+[sub_resource type="VisualShaderNodeScalarConstant" id=7]
+constant = 7.0
+
+[sub_resource type="VisualShaderNodeVectorOp" id=8]
+
+[sub_resource type="VisualShaderNodeInput" id=9]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeVectorCompose" id=10]
+
+[sub_resource type="VisualShader" id=11]
+code = "shader_type spatial;
+render_mode specular_schlick_ggx;
+
+
+
+
+void vertex() {
+// Output:0
+
+}
+
+void fragment() {
+// Color:3
+	vec3 n_out3p0 = vec3(0.972656, 0.021372, 0.021372);
+	float n_out3p1 = 1.000000;
+
+// Scalar:4
+	float n_out4p0 = 7.000000;
+
+// Input:7
+	float n_out7p0 = TIME;
+
+// Scalar:16
+	float n_out16p0 = 35.000000;
+
+// ScalarOp:15
+	float n_out15p0 = n_out7p0 * n_out16p0;
+
+// ScalarFunc:17
+	float n_out17p0 = tan(n_out15p0);
+
+// Scalar:14
+	float n_out14p0 = 5.000000;
+
+// VectorCompose:8
+	float n_in8p2 = 0.00000;
+	vec3 n_out8p0 = vec3(n_out17p0, n_out14p0, n_in8p2);
+
+// Color:2
+	vec3 n_out2p0 = vec3(0.770046, 0.000000, 1.000000);
+	float n_out2p1 = 1.000000;
+
+// VectorOp:6
+	vec3 n_out6p0 = n_out8p0 + n_out2p0;
+
+// Output:0
+	ALBEDO = n_out3p0;
+	METALLIC = n_out4p0;
+	NORMAL = n_out6p0;
+
+}
+
+void light() {
+// Output:0
+
+}
+"
+graph_offset = Vector2( -410.444, -54.4781 )
+nodes/fragment/0/position = Vector2( 560, 40 )
+nodes/fragment/2/node = SubResource( 5 )
+nodes/fragment/2/position = Vector2( 180, 240 )
+nodes/fragment/3/node = SubResource( 6 )
+nodes/fragment/3/position = Vector2( 340, -20 )
+nodes/fragment/4/node = SubResource( 7 )
+nodes/fragment/4/position = Vector2( 300, 80 )
+nodes/fragment/6/node = SubResource( 8 )
+nodes/fragment/6/position = Vector2( 340, 160 )
+nodes/fragment/7/node = SubResource( 9 )
+nodes/fragment/7/position = Vector2( -500, 140 )
+nodes/fragment/8/node = SubResource( 10 )
+nodes/fragment/8/position = Vector2( 100, 100 )
+nodes/fragment/14/node = SubResource( 1 )
+nodes/fragment/14/position = Vector2( -120, 220 )
+nodes/fragment/15/node = SubResource( 2 )
+nodes/fragment/15/position = Vector2( -300, 140 )
+nodes/fragment/16/node = SubResource( 3 )
+nodes/fragment/16/position = Vector2( -520, 220 )
+nodes/fragment/17/node = SubResource( 4 )
+nodes/fragment/17/position = Vector2( -120, 120 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 0, 0, 4, 0, 0, 2, 7, 0, 15, 0, 16, 0, 15, 1, 15, 0, 17, 0, 17, 0, 8, 0, 8, 0, 6, 0, 2, 0, 6, 1, 14, 0, 8, 1, 6, 0, 0, 7 )
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 11 )
+
+[sub_resource type="CubeMesh" id=13]
+material = SubResource( 12 )
+size = Vector3( 0.05, 0.05, 0.25 )
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 0.0287563, 0.0332216, 0.119189 )
+
+[sub_resource type="BoxShape" id=15]
+extents = Vector3( 0.0324495, 0.0373505, 0.0731866 )
+
+[sub_resource type="Animation" id=16]
+resource_name = "anim_liftime"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Bullet_Enemy" type="RigidBody"]
+collision_layer = 512
+collision_mask = 4237
+script = ExtResource( 1 )
+
+[node name="Mesh" type="MeshInstance" parent="."]
+mesh = SubResource( 13 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 14 )
+
+[node name="Hit_Detect_Area" type="Area" parent="." groups=[
+"Enemy_Bullet",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0513252 )
+collision_layer = 512
+
+[node name="CollisionShape" type="CollisionShape" parent="Hit_Detect_Area"]
+shape = SubResource( 15 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "anim_liftime"
+anims/anim_liftime = SubResource( 16 )
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_Enemy_body_entered"]
+[connection signal="body_entered" from="Hit_Detect_Area" to="." method="_on_Hit_Detect_Area_body_entered"]

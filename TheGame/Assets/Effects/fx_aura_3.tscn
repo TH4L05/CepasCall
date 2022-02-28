@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/kenney_particle_pack/muzzle_05.png" type="Texture" id=1]
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+params_blend_mode = 1
+params_cull_mode = 2
+albedo_texture = ExtResource( 1 )
+emission_enabled = true
+emission = Color( 0.788235, 0.698039, 0.101961, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+
+[sub_resource type="Curve" id=7]
+max_value = 100.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.91866, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0813397, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.741627, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Aura3" type="Spatial"]
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+amount = 32
+lifetime = 2.0
+mesh = SubResource( 5 )
+emission_shape = 2
+emission_box_extents = Vector3( 0.1, 0, 0.1 )
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+damping_curve = SubResource( 7 )
+scale_amount_curve = SubResource( 6 )

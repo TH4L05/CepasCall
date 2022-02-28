@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://addons/kenney_particle_pack/circle_01.png" type="Texture" id=1]
+[ext_resource path="res://addons/kenney_particle_pack/light_03.png" type="Texture" id=2]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 0.785227 ), 0.0, 0.0, 0, 0, Vector2( 0.504505, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.757955 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+scale_curve = SubResource( 2 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+flags_unshaded = true
+params_blend_mode = 1
+params_cull_mode = 2
+albedo_color = Color( 0.843137, 0.698039, 0.196078, 1 )
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
+size = Vector2( 4, 4 )
+
+[sub_resource type="SpatialMaterial" id=6]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+albedo_color = Color( 1, 0.901961, 0.501961, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="PlaneMesh" id=7]
+material = SubResource( 6 )
+size = Vector2( 4, 4 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "enable"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("OuterAura:emitting")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CPUParticles:emitting")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ false, true ]
+}
+
+[node name="Aura" type="Spatial"]
+
+[node name="OuterAura" type="Particles" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+emitting = false
+amount = 3
+lifetime = 3.0
+speed_scale = 0.75
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+emitting = false
+amount = 6
+lifetime = 2.0
+speed_scale = 0.3
+mesh = SubResource( 7 )
+flag_align_y = true
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 2, 0 )
+scale_amount = 0.75
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/enable = SubResource( 8 )

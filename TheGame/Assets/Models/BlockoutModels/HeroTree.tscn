@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="CylinderMesh" id=1]
+top_radius = 0.001
+height = 5.158
+
+[sub_resource type="CylinderMesh" id=2]
+top_radius = 0.001
+bottom_radius = 2.0
+height = 15.0
+
+[sub_resource type="CylinderMesh" id=3]
+top_radius = 0.001
+bottom_radius = 0.2
+
+[sub_resource type="CylinderMesh" id=4]
+top_radius = 0.001
+bottom_radius = 0.467
+height = 3.058
+
+[sub_resource type="CylinderShape" id=5]
+radius = 2.0
+height = 15.0
+
+[node name="HeroTree" type="StaticBody"]
+
+[node name="MeshInstance3" type="MeshInstance" parent="."]
+transform = Transform( -0.258819, 0.836516, 0.482963, 0, 0.5, -0.866025, -0.965926, -0.224144, -0.12941, 2.315, 6, -0.424 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.5, -0.866025, 0, 0.866025, 0.5, 0, 8.475, 2.23 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="MeshInstance4" type="MeshInstance" parent="."]
+transform = Transform( 0.714564, 0.14503, -0.684371, -0.682561, 0.358947, -0.636607, 0.153326, 0.922021, 0.355482, 2.455, 6.262, 0.48 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="MeshInstance7" type="MeshInstance" parent="."]
+transform = Transform( -0.197332, -0.848997, -0.490168, 0, 0.5, -0.866025, 0.980337, -0.170895, -0.0986661, -2.718, 6.843, -0.629 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="MeshInstance8" type="MeshInstance" parent="."]
+transform = Transform( -0.572021, 0.279763, 0.771055, -0.682561, 0.358947, -0.636607, -0.454867, -0.890444, -0.0143699, -2.442, 7.106, -1.501 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="MeshInstance6" type="MeshInstance" parent="."]
+transform = Transform( -0.387095, -0.618236, -0.684063, 0.271127, 0.63278, -0.725313, 0.881276, -0.466233, -0.0773258, -1.108, 10.157, -1.039 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.5, 0 )
+shape = SubResource( 5 )

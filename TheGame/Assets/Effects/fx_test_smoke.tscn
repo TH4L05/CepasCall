@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://addons/kenney_particle_pack/smoke_05.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Materials/dissolve.tres" type="Material" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.115578, 0.763819, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.442211, 0.442211, 0.442211, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.323864 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+trail_divisor = 2
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 2, 0 )
+angular_velocity = 30.0
+angular_velocity_random = 1.0
+linear_accel = 4.0
+angle = 360.0
+angle_random = 1.0
+scale = 2.0
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=7]
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0.00632912, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.126582, 0.970455 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00681818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 1
+emission_sphere_radius = 0.21
+gravity = Vector3( 0, 1.016, 0 )
+scale = 0.3
+scale_random = 1.0
+scale_curve = SubResource( 9 )
+
+[sub_resource type="SphereMesh" id=11]
+material = ExtResource( 2 )
+radial_segments = 6
+rings = 2
+
+[node name="smoke_fx" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+visible = false
+material_override = SubResource( 1 )
+amount = 32
+lifetime = 2.0
+speed_scale = 0.2
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="Particles2" type="Particles" parent="."]
+amount = 10
+lifetime = 4.31
+process_material = SubResource( 10 )
+draw_pass_1 = SubResource( 11 )

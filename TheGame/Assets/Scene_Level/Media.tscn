@@ -1,0 +1,1206 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://Assets/MeshLibarys/Trees.tres" type="MeshLibrary" id=1]
+[ext_resource path="res://Assets/MeshLibarys/Grass.meshlib" type="MeshLibrary" id=2]
+[ext_resource path="res://Assets/Materials/Grass.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Scene_Templates/Enemy_Melee.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scene_Templates/Player_Dummy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Scene_Templates/Enemy_Melee_Dummy.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Models/export files/Grass/grass/grass.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Fonts/YuseiMagic-Regular.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Assets/Fonts/Roboto-Black.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://Assets/Textures/Test/barHorizontal_green_mid 200.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Textures/Test/triangle.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Fonts/000 InsomniacOvrLrd Comic Dialogue.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Assets/Scene_Templates/Bullet.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Scene_Templates/Enemy_Range.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Assets/Textures/HUD/godtext.stylebox" type="StyleBox" id=17]
+[ext_resource path="res://Assets/Fonts/ft_god_text.tres" type="DynamicFont" id=18]
+
+[sub_resource type="StyleBoxFlat" id=1]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 25
+corner_radius_bottom_right = 25
+
+[sub_resource type="DynamicFont" id=2]
+size = 45
+font_data = ExtResource( 10 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="DynamicFont" id=4]
+size = 75
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.27451, 0.337255, 0.431373, 1 )
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color( 0.533333, 0.486275, 0.231373, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="DynamicFont" id=6]
+size = 115
+font_data = ExtResource( 13 )
+
+[sub_resource type="ProceduralSky" id=7]
+sky_top_color = Color( 0.376471, 0.623529, 0.890196, 1 )
+sky_horizon_color = Color( 0.0823529, 0.364706, 0.462745, 1 )
+ground_bottom_color = Color( 0.0117647, 0.203922, 0.0392157, 1 )
+ground_horizon_color = Color( 0.0313726, 0.447059, 0.192157, 1 )
+sun_color = Color( 0.960784, 0.721569, 0.176471, 1 )
+sun_latitude = 10.0
+sun_longitude = 4.0
+sun_energy = 15.0
+
+[sub_resource type="Environment" id=8]
+background_mode = 2
+background_sky = SubResource( 7 )
+background_color = Color( 0.666667, 0.890196, 0.941176, 1 )
+background_energy = 0.65
+ambient_light_color = Color( 0.0117647, 0.231373, 0.0117647, 1 )
+fog_color = Color( 0.384314, 0.494118, 0.6, 1 )
+tonemap_mode = 2
+tonemap_white = 2.0
+ssao_enabled = true
+ssao_intensity = 2.0
+ssao_radius2 = 1.0
+ssao_intensity2 = 2.0
+ssao_light_affect = 0.7
+ssao_color = Color( 0.0823529, 0.0901961, 0.0823529, 1 )
+ssao_edge_sharpness = 3.0
+dof_blur_far_enabled = true
+dof_blur_far_distance = 15.0
+dof_blur_far_transition = 7.0
+dof_blur_far_amount = 0.07
+dof_blur_far_quality = 2
+dof_blur_near_enabled = true
+dof_blur_near_amount = 0.05
+dof_blur_near_quality = 2
+glow_enabled = true
+glow_strength = 0.95
+glow_bloom = 0.1
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 0.9
+adjustment_saturation = 1.3
+
+[sub_resource type="PlaneMesh" id=9]
+size = Vector2( 100, 100 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="Animation" id=11]
+length = 0.6
+
+[sub_resource type="Animation" id=12]
+length = 2.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.1, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_flower_or_pick_up_flower_on_death"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Healthbar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("mesh_enemy_melee/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "anim_melee_death" ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "animation"
+tracks/3/path = NodePath("fx_explosion/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "process" ),
+"times": PoolRealArray( 0.5 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hit_Area/CollisionShape:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Attack_Range_Area/CollisionShape:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("mesh_enemy_melee/enemy_melee_rig/Skeleton/BoneAttachment/Area/CollisionShape:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+
+[sub_resource type="Animation" id=14]
+length = 0.6
+
+[sub_resource type="Animation" id=15]
+length = 2.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.1, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_flower_or_pick_up_flower_on_death"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Healthbar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("mesh_enemy_melee/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "anim_melee_death" ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "animation"
+tracks/3/path = NodePath("fx_explosion/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "process" ),
+"times": PoolRealArray( 0.5 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CollisionShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Hit_Area/CollisionShape:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Attack_Range_Area/CollisionShape:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("mesh_enemy_melee/enemy_melee_rig/Skeleton/BoneAttachment/Area/CollisionShape:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=16]
+
+[sub_resource type="Animation" id=17]
+length = 2.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.1, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_flower_or_pick_up_flower_on_death"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Healthbar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("anim_enemy_ranged/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "anim_ranged_death" ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "animation"
+tracks/3/path = NodePath("fx_explosion/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "process" ),
+"times": PoolRealArray( 0.5 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hit_Area/CollisionShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=18]
+
+[sub_resource type="Animation" id=19]
+length = 2.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.1, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "spawn_flower_or_pick_up_flower_on_death"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Healthbar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("anim_enemy_ranged/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "anim_ranged_death" ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "animation"
+tracks/3/path = NodePath("fx_explosion/AnimationPlayer")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": PoolStringArray( "process" ),
+"times": PoolRealArray( 0.5 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Hit_Area/CollisionShape:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=21]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=22]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=23]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Control" type="Control" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+margin_left = 80.0
+margin_top = 48.0
+margin_right = 753.0
+margin_bottom = 171.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "    Robot                              Lv. 20"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control/RichTextLabel"]
+margin_left = 130.991
+margin_top = 66.3303
+margin_right = 330.991
+margin_bottom = 106.33
+rect_scale = Vector2( 2.5, 1 )
+texture = ExtResource( 11 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control"]
+margin_left = 1201.0
+margin_top = 670.0
+margin_right = 1874.0
+margin_bottom = 793.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 2 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "     Cepa                              Lv. 21"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control/RichTextLabel2"]
+margin_left = 130.991
+margin_top = 66.3303
+margin_right = 330.991
+margin_bottom = 106.33
+rect_scale = Vector2( 2.5, 1 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+visible = false
+margin_left = 80.0
+margin_top = 48.0543
+margin_right = 753.0
+margin_bottom = 171.054
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Control"]
+visible = false
+margin_left = 1201.27
+margin_top = 670.09
+margin_right = 1874.27
+margin_bottom = 793.09
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = 1090.0
+margin_top = 822.0
+margin_right = 1919.0
+margin_bottom = 1080.0
+custom_styles/normal = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="triangle" type="Sprite" parent="Control/Label"]
+position = Vector2( 59.0591, 76.3931 )
+scale = Vector2( 0.165801, 0.148088 )
+texture = ExtResource( 12 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/Label"]
+margin_left = 89.2909
+margin_top = 16.0
+margin_right = 436.291
+margin_bottom = 141.0
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Fight"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/Label"]
+margin_left = 89.2909
+margin_top = 125.0
+margin_right = 501.291
+margin_bottom = 376.0
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Pokemon"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control/Label"]
+margin_left = 477.944
+margin_top = 16.0
+margin_right = 889.944
+margin_bottom = 141.0
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Run"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Control/Label"]
+margin_left = 477.944
+margin_top = 125.0
+margin_right = 889.944
+margin_bottom = 376.0
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Bag"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Control"]
+margin_top = 822.0
+margin_right = 1059.0
+margin_bottom = 1080.0
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="Control/Label2"]
+margin_left = 36.0
+margin_top = 16.0
+margin_right = 547.0
+margin_bottom = 251.0
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "What will
+Cepa do ?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Control"]
+visible = false
+margin_left = 918.0
+margin_top = 838.0
+margin_right = 1914.0
+margin_bottom = 1073.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control2" type="Control" parent="."]
+margin_right = 1914.0
+margin_bottom = 1073.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Control2"]
+margin_left = 211.0
+margin_top = 670.0
+margin_right = 1703.0
+margin_bottom = 746.0
+custom_styles/normal = ExtResource( 17 )
+custom_fonts/font = ExtResource( 18 )
+text = "You encounter a group of baby robots.  How do you decide ?"
+align = 1
+
+[node name="Label2" type="Label" parent="Control2"]
+margin_left = 210.991
+margin_top = 736.33
+margin_right = 956.991
+margin_bottom = 890.33
+custom_styles/normal = ExtResource( 17 )
+custom_fonts/font = ExtResource( 18 )
+text = "   I just kill them"
+
+[node name="Label4" type="Label" parent="Control2"]
+margin_left = 210.991
+margin_top = 890.33
+margin_right = 956.991
+margin_bottom = 1044.33
+custom_styles/normal = ExtResource( 17 )
+custom_fonts/font = ExtResource( 18 )
+text = "Uh Robots !! I want to cuddle with them"
+
+[node name="Label5" type="Label" parent="Control2"]
+margin_left = 956.991
+margin_top = 890.33
+margin_right = 1702.99
+margin_bottom = 1044.33
+custom_styles/normal = ExtResource( 17 )
+custom_fonts/font = ExtResource( 18 )
+text = "   Which Robots ?"
+
+[node name="Label3" type="Label" parent="Control2"]
+margin_left = 956.991
+margin_top = 736.33
+margin_right = 1702.99
+margin_bottom = 890.33
+custom_styles/normal = ExtResource( 17 )
+custom_fonts/font = ExtResource( 18 )
+text = "   Throw a Pokeball"
+
+[node name="Label6" type="Label" parent="Control2"]
+margin_left = 1005.73
+margin_top = 977.833
+margin_right = 1751.73
+margin_bottom = 1131.83
+custom_fonts/font = ExtResource( 18 )
+text = "insanity +5  nonsense + 50"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="Control2"]
+margin_left = 238.675
+margin_top = 984.189
+margin_right = 984.675
+margin_bottom = 1138.19
+custom_fonts/font = ExtResource( 18 )
+text = "cuteness +99   attention -2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label8" type="Label" parent="Control2"]
+margin_left = 238.675
+margin_top = 825.27
+margin_right = 984.675
+margin_bottom = 979.27
+custom_fonts/font = ExtResource( 18 )
+text = "malice +2  strength +3  evil +1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label9" type="Label" parent="Control2"]
+margin_left = 1003.61
+margin_top = 823.151
+margin_right = 1749.61
+margin_bottom = 977.151
+custom_fonts/font = ExtResource( 18 )
+text = "pokemon +1   knowledge +2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.994521, -0.10401, 0.0104521, -0.0964291, -0.874218, 0.475862, -0.0403569, -0.474263, -0.879458, 6.12741, 5.24503, -14.4309 )
+light_color = Color( 0.815686, 0.701961, 0.4, 1 )
+light_energy = 4.0
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 8 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0277424, -0.0234675, -0.031245 )
+material_override = ExtResource( 3 )
+mesh = SubResource( 9 )
+material/0 = null
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.945519, 0.325568, 0, -0.325568, 0.945519, 10.4738, 2.58505, -20.9582 )
+current = true
+fov = 65.6
+size = 5.0
+
+[node name="Camera2" type="Camera" parent="."]
+transform = Transform( -0.978499, 0.0431019, -0.2017, 0.0280463, 0.996643, 0.0769159, 0.204338, 0.0696052, -0.976423, 30.3639, 1.20791, -0.19828 )
+projection = 1
+fov = 86.0
+size = 3.0
+
+[node name="Camera3" type="Camera" parent="."]
+transform = Transform( -0.484044, -0.540073, 0.688493, -0.0195378, 0.793285, 0.608538, -0.874826, 0.281107, -0.394536, 21.2149, 1.85318, -0.0506735 )
+current = true
+fov = 68.1522
+size = 1.8
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.989531, 0.00749442, 0.144123, -0.0168675, 0.9858, -0.167072, -0.143329, -0.167754, -0.975354, 10.25, 0, -12.7382 )
+
+[node name="Skeleton" parent="Player/anim_player_dummy/Armature" index="0"]
+bones/10/bound_children = [ NodePath("BoneAttachment3") ]
+bones/20/bound_children = [ NodePath("BoneAttachment2") ]
+bones/33/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="BoneAttachment" parent="Player/anim_player_dummy/Armature/Skeleton" index="3"]
+transform = Transform( 0.89853, 0.0664104, -0.352189, 0.0332605, -0.961966, -0.0965334, -0.35685, 0.077556, -0.895795, -0.304569, 0.260985, 0.744089 )
+
+[node name="BoneAttachment2" parent="Player/anim_player_dummy/Armature/Skeleton" index="4"]
+transform = Transform( -0.0249939, 0.443519, 0.859342, 0.322614, -0.806557, 0.425659, 0.911646, 0.297586, -0.127074, 0.321276, 0.11728, -0.0231479 )
+
+[node name="BoneAttachment3" parent="Player/anim_player_dummy/Armature/Skeleton" index="6"]
+transform = Transform( 0.967369, 2.36245e-07, -4.47035e-08, -1.7765e-07, 0.949569, -0.18472, -1.30385e-07, 0.18472, 0.949569, -7.73869e-09, -0.0235577, -0.0504479 )
+
+[node name="fx_butterflies" parent="Player/anim_player_dummy/Armature/Skeleton/BoneAttachment3" index="0"]
+transform = Transform( -1.03373, -2.14204e-07, 5.96046e-07, -2.79164e-07, 1.01471, -0.197392, -6.85453e-07, -0.197392, -1.01471, -9.53674e-07, -0.345282, 0.120296 )
+
+[node name="Player2" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.902961, 0, -0.429723, 0, 1, 0, 0.429723, 0, -0.902961, 31.5931, 0, 0.250164 )
+
+[node name="Skeleton" parent="Player2/anim_player_dummy/Armature" index="0"]
+bones/10/bound_children = [ NodePath("BoneAttachment3") ]
+bones/20/bound_children = [ NodePath("BoneAttachment2") ]
+bones/33/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="BoneAttachment" parent="Player2/anim_player_dummy/Armature/Skeleton" index="3"]
+transform = Transform( 0.89853, 0.0664104, -0.352189, 0.0332605, -0.961966, -0.0965334, -0.35685, 0.077556, -0.895795, -0.304569, 0.260985, 0.744089 )
+
+[node name="BoneAttachment2" parent="Player2/anim_player_dummy/Armature/Skeleton" index="4"]
+transform = Transform( -0.0249939, 0.443519, 0.859342, 0.322614, -0.806557, 0.425659, 0.911646, 0.297586, -0.127074, 0.321276, 0.11728, -0.0231479 )
+
+[node name="BoneAttachment3" parent="Player2/anim_player_dummy/Armature/Skeleton" index="6"]
+transform = Transform( 0.967369, 2.36245e-07, -4.47035e-08, -1.7765e-07, 0.949569, -0.18472, -1.30385e-07, 0.18472, 0.949569, -7.73869e-09, -0.0235577, -0.0504479 )
+
+[node name="Player3" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.998311, 0, -0.0581038, 0, 1, 0, 0.0581038, 0, -0.998311, 19.5327, 0, 0.00489378 )
+
+[node name="Skeleton" parent="Player3/anim_player_dummy/Armature" index="0"]
+bones/10/bound_children = [ NodePath("BoneAttachment3") ]
+bones/20/bound_children = [ NodePath("BoneAttachment2") ]
+bones/33/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="BoneAttachment" parent="Player3/anim_player_dummy/Armature/Skeleton" index="3"]
+transform = Transform( 0.89853, 0.0664104, -0.352189, 0.0332605, -0.961966, -0.0965334, -0.35685, 0.077556, -0.895795, -0.304569, 0.260985, 0.744089 )
+
+[node name="BoneAttachment2" parent="Player3/anim_player_dummy/Armature/Skeleton" index="4"]
+transform = Transform( -0.0249939, 0.443519, 0.859342, 0.322614, -0.806557, 0.425659, 0.911646, 0.297586, -0.127074, 0.321276, 0.11728, -0.0231479 )
+
+[node name="BoneAttachment3" parent="Player3/anim_player_dummy/Armature/Skeleton" index="6"]
+transform = Transform( 0.967369, 2.36245e-07, -4.47035e-08, -1.7765e-07, 0.949569, -0.18472, -1.30385e-07, 0.18472, 0.949569, -7.73869e-09, -0.0235577, -0.0504479 )
+
+[node name="Enemy_Melee2" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.499937, -0.00138196, -0.00783749, 0, 0.492404, -0.0868241, 0.00795838, 0.0868131, 0.492341, 19.289, -0.05, 2.46834 )
+
+[node name="BoneAttachment" parent="Enemy_Melee2/mesh_enemy_melee/enemy_melee_rig/Skeleton" index="1"]
+transform = Transform( 0.0378762, -0.996074, 0.0797969, -0.739383, 0.0257851, 0.672789, -0.672217, -0.0844795, -0.735516, -1.10398, 1.26862, -1.51047 )
+
+[node name="BoneAttachment2" parent="Enemy_Melee2/mesh_enemy_melee/enemy_melee_rig/Skeleton" index="2"]
+transform = Transform( -0.992974, -0.0311699, 0.114003, 0.0490228, 0.769093, 0.637251, -0.107539, 0.638373, -0.762174, -1.06446, 0.29341, -2.31993 )
+
+[node name="AnimationTree" parent="Enemy_Melee2" index="2"]
+active = false
+parameters/playback = SubResource( 10 )
+
+[node name="CollisionShape" parent="Enemy_Melee2/Player_Detect_Area" index="0"]
+disabled = true
+
+[node name="Healthbar" parent="Enemy_Melee2" index="6"]
+visible = false
+
+[node name="AnimationPlayer" parent="Enemy_Melee2" index="8"]
+anims/anim_attack_glow = SubResource( 11 )
+anims/anim_die = SubResource( 12 )
+
+[node name="Enemy_Melee3" parent="." instance=ExtResource( 4 )]
+transform = Transform( 0.498395, 0.00695111, 0.0394217, 0, 0.492404, -0.0868241, -0.0400299, 0.0865454, 0.490823, 19.7395, -0.05, 2.95732 )
+
+[node name="BoneAttachment" parent="Enemy_Melee3/mesh_enemy_melee/enemy_melee_rig/Skeleton" index="1"]
+transform = Transform( 0.0378762, -0.996074, 0.0797969, -0.739383, 0.0257851, 0.672789, -0.672217, -0.0844795, -0.735516, -1.10398, 1.26862, -1.51047 )
+
+[node name="BoneAttachment2" parent="Enemy_Melee3/mesh_enemy_melee/enemy_melee_rig/Skeleton" index="2"]
+transform = Transform( -0.992974, -0.0311699, 0.114003, 0.0490228, 0.769093, 0.637251, -0.107539, 0.638373, -0.762174, -1.06446, 0.29341, -2.31993 )
+
+[node name="AnimationTree" parent="Enemy_Melee3" index="2"]
+active = false
+parameters/playback = SubResource( 13 )
+
+[node name="CollisionShape" parent="Enemy_Melee3/Player_Detect_Area" index="0"]
+disabled = true
+
+[node name="Healthbar" parent="Enemy_Melee3" index="6"]
+visible = false
+
+[node name="AnimationPlayer" parent="Enemy_Melee3" index="8"]
+anims/anim_attack_glow = SubResource( 14 )
+anims/anim_die = SubResource( 15 )
+
+[node name="Enemy_Range2" parent="." instance=ExtResource( 16 )]
+transform = Transform( 0.475979, 0.0187837, 0.151957, 0.00975752, 0.491493, -0.0913186, -0.152802, 0.089897, 0.467515, 20.2578, -0.05, 2.47001 )
+
+[node name="AT" parent="Enemy_Range2" index="2"]
+parameters/playback = SubResource( 16 )
+
+[node name="CollisionShape" parent="Enemy_Range2/Player_Detect_Area" index="0"]
+disabled = true
+
+[node name="Healthbar" parent="Enemy_Range2" index="6"]
+visible = false
+
+[node name="AnimationPlayer" parent="Enemy_Range2" index="10"]
+anims/anim_die = SubResource( 17 )
+
+[node name="Enemy_Range3" parent="." instance=ExtResource( 16 )]
+transform = Transform( 0.497296, -0.0188622, -0.0483829, 0.00975752, 0.491493, -0.0913186, 0.0510047, 0.0898806, 0.489203, 18.7939, -0.05, 2.82454 )
+
+[node name="AT" parent="Enemy_Range3" index="2"]
+parameters/playback = SubResource( 18 )
+
+[node name="CollisionShape" parent="Enemy_Range3/Hit_Area" index="0"]
+disabled = true
+
+[node name="Healthbar" parent="Enemy_Range3" index="6"]
+visible = false
+
+[node name="AnimationPlayer" parent="Enemy_Range3" index="10"]
+anims/anim_die = SubResource( 19 )
+
+[node name="Enemy_Melee_Dummy" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.490478, 0, -0.871454, 0, 1, 0, 0.871454, 0, 0.490478, -3.69599, -0.373123, 0.334439 )
+visible = false
+
+[node name="AnimationTree" parent="Enemy_Melee_Dummy/anim_enemy_melee_dummy" index="2"]
+parameters/playback = SubResource( 20 )
+
+[node name="Particles2" parent="Enemy_Melee_Dummy/smoke_fx" index="0"]
+visible = false
+
+[node name="CollisionShape" parent="Enemy_Melee_Dummy" index="2"]
+transform = Transform( 0.940484, -0.339838, 5.53668e-08, 0, -1.62921e-07, -1, 0.339838, 0.940484, -1.53225e-07, -0.15, 0.77, -0.135 )
+
+[node name="Healthbar" parent="Enemy_Melee_Dummy" index="4"]
+visible = false
+
+[node name="grass4" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.46736, 0, -24.456 )
+span = 2.0
+count = 1500
+width = Vector2( 0.3, 0.02 )
+height = Vector2( 0.4, 0.1 )
+
+[node name="grass21" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.95903, 0, -28.6337 )
+span = 2.0
+count = 1500
+width = Vector2( 0.2, 0.02 )
+height = Vector2( 0.3, 0.1 )
+
+[node name="grass22" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 9.79714, 0, -28.6337 )
+span = 2.0
+count = 1500
+width = Vector2( 0.2, 0.02 )
+height = Vector2( 0.3, 0.1 )
+
+[node name="grass23" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.2696, 0, -28.6337 )
+span = 2.0
+count = 1500
+width = Vector2( 0.2, 0.02 )
+height = Vector2( 0.3, 0.1 )
+
+[node name="grass24" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9527, 0, -28.6337 )
+span = 2.0
+count = 1500
+width = Vector2( 0.2, 0.02 )
+height = Vector2( 0.3, 0.1 )
+
+[node name="grass20" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.6544, 0, -24.1939 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 5.0
+
+[node name="grass5" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.62255, 0, -0.475092 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass6" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.30164, 0, -0.475092 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass7" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.30164, 0, -3.90842 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass8" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.38436, 0, -2.63365 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass9" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00618696, 0, -2.63365 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass10" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.49015, 0, -2.63365 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass11" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.49015, 0, -5.34773 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass12" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.1383, 0, -5.34773 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass13" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.82394, 0, 2.34003 )
+span = 2.0
+count = 2500
+width = Vector2( 0.09, 0.04 )
+height = Vector2( 0.4, 0.2 )
+radius = 2.0
+
+[node name="grass14" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.438491, 0, 2.34003 )
+span = 2.0
+count = 2500
+width = Vector2( 0.09, 0.04 )
+height = Vector2( 0.4, 0.2 )
+radius = 2.0
+
+[node name="grass15" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.28545, 0, -5.3554 )
+span = 2.0
+count = 2500
+width = Vector2( 0.09, 0.04 )
+height = Vector2( 0.4, 0.2 )
+radius = 2.0
+
+[node name="grass16" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0851, 0, -2.99924 )
+span = 2.0
+count = 2500
+width = Vector2( 0.09, 0.04 )
+height = Vector2( 0.4, 0.2 )
+radius = 2.0
+
+[node name="grass17" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0851, 0, -6.82699 )
+span = 2.0
+count = 2500
+width = Vector2( 0.09, 0.04 )
+height = Vector2( 0.4, 0.2 )
+radius = 2.0
+
+[node name="grass18" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.7808, 0, -8.66573 )
+span = 2.0
+count = 2500
+width = Vector2( 0.09, 0.04 )
+height = Vector2( 0.4, 0.2 )
+radius = 2.0
+
+[node name="grass19" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9952, 0, -8.66573 )
+span = 2.0
+count = 2500
+width = Vector2( 0.09, 0.04 )
+height = Vector2( 0.4, 0.2 )
+radius = 2.0
+
+[node name="Enemy_Melee_Dummy3" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.788374, 0, -0.135892, 0, 0.8, 0, 0.135892, 0, 0.788374, 32.1878, 0, 14.1715 )
+
+[node name="AnimationTree" parent="Enemy_Melee_Dummy3/anim_enemy_melee_dummy" index="2"]
+parameters/playback = SubResource( 21 )
+
+[node name="Particles2" parent="Enemy_Melee_Dummy3/smoke_fx" index="0"]
+visible = false
+
+[node name="Healthbar" parent="Enemy_Melee_Dummy3" index="4"]
+visible = false
+
+[node name="Position_Spawn_Plant" parent="Enemy_Melee_Dummy3" index="5"]
+transform = Transform( 1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, 0, 0.1, 0 )
+
+[node name="Enemy_Melee_Dummy2" parent="." instance=ExtResource( 7 )]
+transform = Transform( -0.452404, 0, 0.891813, 0, 1, 0, -0.891813, 0, -0.452404, -16.6034, 0, -1.75425 )
+visible = false
+
+[node name="AnimationTree" parent="Enemy_Melee_Dummy2/anim_enemy_melee_dummy" index="2"]
+parameters/playback = SubResource( 22 )
+
+[node name="Healthbar" parent="Enemy_Melee_Dummy2" index="4"]
+visible = false
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
+mesh_library = ExtResource( 1 )
+cell_size = Vector3( 1, 1, 1 )
+data = {
+"cells": PoolIntArray( 65496, 0, 3, 65498, 0, 6, 65499, 0, 6, 65506, 0, 6, 65514, 0, 3, 65515, 0, 4, 65516, 0, 4, 65520, 0, 2, 65524, 0, 3, 65526, 0, 4, 65529, 0, 6, 6, 1, 4, 65497, 1, 3, 65521, 1, 2, 65528, 1, 2, 65505, 2, 3, 65506, 2, 3, 65516, 2, 4, 65517, 2, 4, 65518, 2, 4, 65520, 2, 4, 65522, 2, 4, 65523, 2, 4, 65524, 2, 4, 65525, 2, 4, 65529, 2, 6, 65531, 2, 6, 65499, 3, 3, 65502, 3, 4, 65505, 3, 3, 65506, 3, 3, 65509, 3, 4, 65528, 3, 4, 65500, 4, 3, 65503, 4, 3, 65517, 4, 3, 65518, 4, 3, 65523, 4, 3, 65524, 4, 3, 65528, 4, 4, 65532, 4, 6, 65501, 5, 3, 65503, 5, 3, 65517, 5, 3, 65518, 5, 3, 65522, 5, 3, 65523, 5, 4, 65529, 5, 4, 65531, 5, 6, 65504, 6, 3, 65505, 6, 3, 65508, 6, 3, 65517, 6, 3, 65519, 6, 3, 65523, 6, 3, 65528, 6, 3, 65532, 6, 6, 65506, 7, 3, 65508, 7, 3, 65530, 7, 2, 2, 8, 3, 4, 8, 3, 8, 8, 3, 65496, 8, 3, 65506, 8, 3, 65507, 8, 3, 65511, 8, 3, 65526, 8, 3, 65527, 8, 3, 65531, 8, 4, 65532, 8, 3, 65533, 8, 3, 0, 9, 3, 6, 9, 3, 65507, 9, 3, 65512, 9, 3, 65513, 9, 3, 65514, 9, 3, 65515, 9, 3, 65521, 9, 3, 65532, 9, 3, 65535, 9, 3, 2, 10, 3, 65508, 10, 3, 65509, 10, 3, 65525, 10, 3, 65528, 10, 4, 65532, 10, 4, 4, 11, 3, 7, 11, 3, 65509, 11, 3, 65512, 11, 3, 65513, 11, 3, 65519, 11, 3, 65523, 11, 3, 65525, 11, 3, 65534, 11, 4, 1, 12, 3, 65510, 12, 3, 65519, 12, 3, 65535, 12, 4, 65511, 13, 3, 65512, 13, 3, 65521, 13, 3, 65525, 13, 3, 65529, 13, 3, 65531, 13, 3, 1, 14, 3, 65513, 14, 3, 65522, 14, 3, 65523, 14, 3, 65524, 14, 3, 65525, 14, 3, 65528, 14, 3, 65531, 14, 3, 65501, 15, 3, 65516, 15, 3, 65525, 15, 3, 65529, 15, 3, 65533, 15, 3, 65534, 15, 3, 65517, 16, 3, 65526, 16, 3, 65529, 16, 3, 65531, 16, 3, 65518, 17, 3, 65519, 17, 3, 65529, 17, 3, 9, 18, 3, 65520, 18, 3, 65521, 18, 3, 65523, 18, 3, 6, 19, 3, 7, 19, 3, 8, 19, 3, 9, 19, 3, 65524, 19, 3, 65526, 19, 3, 65527, 19, 3, 65529, 19, 3, 65531, 19, 3, 0, 20, 3, 1, 20, 3, 2, 20, 3, 3, 20, 3, 4, 20, 3, 5, 20, 3, 6, 20, 3, 65532, 20, 3, 65533, 20, 3, 65534, 20, 3, 65535, 20, 3, 2, 21, 3, 11, 65486, 3, 4, 65487, 3, 65533, 65489, 3, 65534, 65489, 3, 65535, 65489, 3, 19, 65490, 4, 6, 65491, 4, 28, 65491, 4, 29, 65491, 4, 0, 65492, 3, 13, 65492, 4, 15, 65492, 2, 27, 65492, 3, 29, 65492, 4, 3, 65493, 2, 5, 65493, 3, 8, 65493, 3, 9, 65493, 2, 3, 65494, 2, 5, 65494, 3, 9, 65494, 3, 11, 65494, 3, 21, 65494, 3, 22, 65494, 3, 29, 65494, 3, 2, 65495, 2, 11, 65495, 3, 12, 65495, 3, 16, 65495, 2, 17, 65495, 3, 18, 65495, 3, 19, 65495, 3, 20, 65495, 2, 23, 65495, 2, 28, 65495, 4, 65535, 65495, 2, 0, 65496, 4, 6, 65496, 4, 12, 65496, 3, 15, 65496, 2, 16, 65496, 2, 21, 65496, 3, 23, 65496, 2, 28, 65496, 4, 65532, 65496, 2, 3, 65497, 3, 4, 65497, 3, 8, 65497, 2, 15, 65497, 3, 23, 65497, 2, 65533, 65497, 3, 65534, 65497, 3, 65535, 65497, 3, 10, 65498, 2, 18, 65498, 4, 20, 65498, 2, 23, 65498, 2, 2, 65499, 3, 20, 65499, 2, 2, 65500, 6, 5, 65500, 3, 7, 65500, 6, 9, 65500, 6, 10, 65500, 6, 13, 65500, 2, 15, 65500, 6, 17, 65500, 6, 18, 65500, 6, 19, 65500, 6, 20, 65500, 2, 22, 65500, 6, 23, 65500, 6, 24, 65500, 6, 25, 65500, 6, 65530, 65500, 6, 65531, 65500, 6, 65532, 65500, 6, 65533, 65500, 6, 65534, 65500, 6, 2, 65501, 6, 6, 65501, 4, 8, 65501, 4, 14, 65501, 6, 15, 65501, 6, 16, 65501, 6, 17, 65501, 6, 19, 65501, 6, 20, 65501, 2, 21, 65501, 6, 23, 65501, 6, 24, 65501, 6, 25, 65501, 6, 26, 65501, 6, 27, 65501, 6, 28, 65501, 6, 65526, 65501, 6, 65527, 65501, 6, 65528, 65501, 6, 65529, 65501, 6, 65530, 65501, 6, 65531, 65501, 6, 65532, 65501, 6, 65533, 65501, 6, 65534, 65501, 6, 2, 65502, 6, 3, 65502, 6, 5, 65502, 2, 8, 65502, 6, 15, 65502, 6, 16, 65502, 6, 17, 65502, 6, 18, 65502, 6, 19, 65502, 2, 21, 65502, 6, 22, 65502, 6, 23, 65502, 6, 24, 65502, 6, 25, 65502, 6, 65530, 65502, 6, 65531, 65502, 6, 65532, 65502, 6, 65533, 65502, 6, 65534, 65502, 6, 65535, 65502, 3, 3, 65503, 2, 10, 65503, 3, 14, 65503, 2, 15, 65503, 2, 21, 65503, 4, 65535, 65503, 3, 0, 65504, 3, 0, 65505, 3, 1, 65505, 3, 12, 65505, 3, 20, 65505, 2, 22, 65505, 3, 65494, 65505, 4, 0, 65506, 3, 20, 65506, 2, 21, 65506, 2, 25, 65506, 4, 65534, 65506, 2, 18, 65507, 1441798, 19, 65507, 6, 21, 65507, 2, 65503, 65507, 3, 65508, 65507, 4, 65509, 65507, 4, 65535, 65507, 2, 23, 65508, 3, 65503, 65508, 3, 65508, 65508, 4, 1, 65509, 1441798, 65516, 65509, 3, 19, 65510, 6, 23, 65510, 3, 65535, 65510, 1441798, 0, 65511, 1441798, 19, 65511, 6, 65492, 65511, 3, 65503, 65511, 3, 65504, 65511, 3, 65506, 65511, 3, 65507, 65511, 3, 19, 65512, 6, 65492, 65512, 3, 65506, 65512, 3, 65508, 65512, 3, 65510, 65512, 3, 65511, 65512, 3, 65512, 65512, 3, 65515, 65512, 3, 65518, 65512, 3, 65520, 65512, 3, 65522, 65512, 3, 65535, 65512, 1441798, 0, 65513, 1441798, 65491, 65513, 3, 65522, 65513, 3, 65524, 65513, 3, 65526, 65513, 3, 65527, 65513, 3, 65535, 65513, 1441798, 0, 65514, 1441798, 1, 65514, 1441798, 65499, 65514, 4, 65535, 65514, 1441798, 1, 65515, 1441798, 19, 65515, 6, 65493, 65515, 4, 65503, 65515, 4, 65504, 65515, 4, 65511, 65515, 6, 65515, 65515, 3, 0, 65517, 3, 1, 65517, 3, 65509, 65517, 3, 65510, 65517, 3, 65525, 65517, 3, 0, 65518, 3, 65515, 65518, 6, 65525, 65518, 3, 65535, 65518, 3, 65520, 65519, 3, 65533, 65519, 3, 65521, 65520, 6, 65522, 65520, 6, 65523, 65520, 6, 65525, 65520, 3, 65532, 65520, 3, 65501, 65521, 4, 65518, 65521, 3, 65529, 65521, 3, 65530, 65521, 3, 65531, 65521, 3, 65532, 65521, 3, 65490, 65522, 6, 65491, 65522, 6, 65495, 65522, 4, 65533, 65522, 3, 65534, 65522, 3, 65535, 65522, 3, 65490, 65523, 6, 65491, 65523, 6, 65507, 65523, 3, 65525, 65523, 2, 65490, 65524, 6, 65491, 65524, 6, 65494, 65524, 3, 65499, 65524, 4, 65500, 65524, 4, 65501, 65524, 4, 65519, 65524, 4, 65520, 65524, 4, 65526, 65524, 3, 65530, 65524, 3, 65501, 65525, 4, 65502, 65525, 4, 65503, 65525, 4, 65512, 65525, 4, 65522, 65525, 4, 65525, 65525, 4, 65528, 65525, 6, 0, 65526, 3, 65506, 65526, 6, 65525, 65526, 4, 65528, 65526, 2, 65531, 65526, 2, 65533, 65526, 3, 65496, 65527, 4, 65512, 65527, 4, 65513, 65527, 4, 65527, 65527, 4, 65529, 65527, 2, 65531, 65527, 2, 3, 65528, 3, 4, 65528, 3, 5, 65528, 3, 6, 65528, 3, 65506, 65528, 4, 65513, 65528, 4, 65514, 65528, 4, 65527, 65528, 2, 65528, 65528, 2, 65535, 65528, 6, 65490, 65529, 6, 65498, 65529, 3, 65502, 65529, 6, 65532, 65529, 3, 2, 65530, 4, 3, 65530, 6, 4, 65530, 6, 9, 65530, 3, 65490, 65530, 6, 65501, 65530, 6, 65502, 65530, 6, 65511, 65530, 6, 65516, 65530, 4, 65517, 65530, 4, 65535, 65530, 4, 6, 65531, 3, 7, 65531, 3, 65500, 65531, 6, 65502, 65531, 6, 65510, 65531, 3, 65511, 65531, 6, 65500, 65532, 6, 65510, 65532, 6, 65513, 65532, 4, 65514, 65532, 4, 3, 65533, 4, 6, 65533, 6, 65499, 65533, 6, 65501, 65533, 3, 65505, 65533, 4, 65506, 65533, 4, 65507, 65533, 4, 65509, 65533, 4, 65510, 65533, 4, 65511, 65533, 4, 65512, 65533, 4, 65513, 65533, 4, 65517, 65533, 2, 65519, 65533, 4, 65520, 65533, 4, 65493, 65534, 3, 65494, 65534, 3, 5, 65535, 4, 65495, 65535, 3, 65498, 65535, 6, 65505, 65535, 6, 65514, 65535, 3, 65519, 65535, 2, 65520, 65535, 2, 65521, 65535, 4, 65522, 65535, 4, 65523, 65535, 4, 65524, 65535, 4, 65527, 65535, 4 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="GridMap2" type="GridMap" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.1, 0 )
+visible = false
+mesh_library = ExtResource( 2 )
+cell_size = Vector3( 1, 1, 1 )
+data = {
+"cells": PoolIntArray( 23, 1, 13, 65525, 3, 13, 65516, 7, 13, 65532, 8, 13, 9, 14, 13, 65470, 17, 13, 65510, 24, 13, 65498, 26, 13, 65527, 26, 13, 65523, 32, 13, 65493, 36, 13, 65485, 42, 13, 65509, 42, 13, 8, 46, 13, 65516, 46, 13, 65528, 49, 13, 65387, 65453, 13, 65409, 65462, 13, 65408, 65463, 13, 65421, 65464, 13, 65407, 65465, 13, 65405, 65466, 13, 65376, 65468, 13, 65376, 65469, 13, 65387, 65474, 13, 65387, 65475, 13, 65415, 65476, 13, 65416, 65476, 13, 65457, 65476, 13, 65417, 65479, 13, 65418, 65480, 13, 65404, 65482, 13, 65405, 65482, 13, 65402, 65483, 13, 65438, 65483, 13, 65475, 65483, 13, 65400, 65484, 13, 65392, 65487, 13, 65395, 65487, 13, 65470, 65488, 13, 65471, 65488, 13, 65504, 65489, 13, 65418, 65492, 13, 65419, 65492, 13, 65421, 65492, 13, 65525, 65495, 13, 65456, 65497, 13, 65431, 65499, 13, 65432, 65499, 13, 65493, 65499, 13, 65493, 65500, 13, 65397, 65502, 13, 65414, 65502, 13, 65513, 65502, 13, 65414, 65503, 13, 65398, 65505, 13, 65475, 65508, 13, 65476, 65508, 13, 65477, 65508, 13, 65400, 65509, 13, 65499, 65509, 13, 65500, 65509, 13, 65463, 65511, 13, 13, 65512, 13, 65404, 65513, 13, 65439, 65514, 13, 65408, 65516, 13, 65415, 65519, 13, 65501, 65519, 13, 10, 65521, 13, 65483, 65526, 13, 65484, 65526, 13, 65535, 65526, 13, 65525, 65531, 13, 65535, 65535, 13 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="grass2" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.286, 0, 0.325778 )
+span = 2.0
+count = 1500
+width = Vector2( 0.09, 0.02 )
+height = Vector2( 0.5, 0.1 )
+radius = 2.0
+
+[node name="grass3" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.0918, 0, 14.2465 )
+span = 2.0
+count = 1500
+height = Vector2( 0.8, 0.1 )
+radius = 2.0
+
+[node name="TracerFire3" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.768015, 0, 0.640432, 0, 1, 0, -0.640432, 0, 0.768015, -0.153298, 0.876284, -0.484909 )
+visible = false
+
+[node name="TracerFire4" parent="." instance=ExtResource( 14 )]
+transform = Transform( 0.768015, 0, 0.640432, 0, 1, 0, -0.640432, 0, 0.768015, -3.11324, 0.876284, -0.836462 )
+visible = false
+
+[node name="Enemy_Melee" parent="." instance=ExtResource( 4 )]
+transform = Transform( -0.719376, 0, -0.69462, 0, 1, 0, 0.69462, 0, -0.719376, 7.42218, -0.05, -24.167 )
+
+[node name="BoneAttachment" parent="Enemy_Melee/mesh_enemy_melee/enemy_melee_rig/Skeleton" index="1"]
+transform = Transform( 0.0378762, -0.996074, 0.0797969, -0.739383, 0.0257851, 0.672789, -0.672217, -0.0844795, -0.735516, -1.10398, 1.26862, -1.51047 )
+
+[node name="BoneAttachment2" parent="Enemy_Melee/mesh_enemy_melee/enemy_melee_rig/Skeleton" index="2"]
+transform = Transform( -0.992974, -0.0311699, 0.114003, 0.0490228, 0.769093, 0.637251, -0.107539, 0.638373, -0.762174, -1.06446, 0.29341, -2.31993 )
+
+[node name="AnimationTree" parent="Enemy_Melee" index="2"]
+active = false
+parameters/playback = SubResource( 23 )
+
+[node name="Healthbar" parent="Enemy_Melee" index="6"]
+visible = false
+
+[node name="Enemy_Range" parent="." instance=ExtResource( 16 )]
+transform = Transform( -0.732638, 0, 0.680619, 0, 1, 0, -0.680619, 0, -0.732638, 13.3293, -0.05, -24.158 )
+
+[node name="AT" parent="Enemy_Range" index="2"]
+parameters/playback = SubResource( 24 )
+
+[node name="Healthbar" parent="Enemy_Range" index="6"]
+visible = false
+
+[editable path="Player"]
+[editable path="Player2"]
+[editable path="Player3"]
+[editable path="Enemy_Melee2"]
+[editable path="Enemy_Melee2/FX/fx_exclamation"]
+[editable path="Enemy_Melee2/FX/Particles_Explosion"]
+[editable path="Enemy_Melee3"]
+[editable path="Enemy_Melee3/FX/fx_exclamation"]
+[editable path="Enemy_Melee3/FX/Particles_Explosion"]
+[editable path="Enemy_Range2"]
+[editable path="Enemy_Range2/FX/Particles_Explosion"]
+[editable path="Enemy_Range2/FX/fx_exclamation"]
+[editable path="Enemy_Range3"]
+[editable path="Enemy_Range3/FX/Particles_Explosion"]
+[editable path="Enemy_Range3/FX/fx_exclamation"]
+[editable path="Enemy_Melee_Dummy"]
+[editable path="Enemy_Melee_Dummy/anim_enemy_melee_dummy"]
+[editable path="Enemy_Melee_Dummy/smoke_fx"]
+[editable path="Enemy_Melee_Dummy/fx_explosion"]
+[editable path="Enemy_Melee_Dummy3"]
+[editable path="Enemy_Melee_Dummy3/anim_enemy_melee_dummy"]
+[editable path="Enemy_Melee_Dummy3/smoke_fx"]
+[editable path="Enemy_Melee_Dummy3/fx_explosion"]
+[editable path="Enemy_Melee_Dummy2"]
+[editable path="Enemy_Melee_Dummy2/anim_enemy_melee_dummy"]
+[editable path="Enemy_Melee_Dummy2/smoke_fx"]
+[editable path="Enemy_Melee_Dummy2/fx_explosion"]
+[editable path="Enemy_Melee"]
+[editable path="Enemy_Melee/FX/fx_exclamation"]
+[editable path="Enemy_Melee/FX/Particles_Explosion"]
+[editable path="Enemy_Range"]
+[editable path="Enemy_Range/FX/Particles_Explosion"]
+[editable path="Enemy_Range/FX/fx_exclamation"]

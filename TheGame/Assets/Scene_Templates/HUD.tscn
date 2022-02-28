@@ -1,0 +1,547 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://Assets/Fonts/digital-7.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/Fonts/YuseiMagic-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Scripts/HUD.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Textures/HUD/Lifebar/ui_hud_robot.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Textures/HUD/Skills/ui_hud_skill_grenade_colourless.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Textures/HUD/Skills/ui_hud_skill_dash_colourless.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Textures/HUD/Lifebar/ui_hud_life_border.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Textures/HUD/Skills/ui_hud_skills_background.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Textures/HUD/Skills/ui_hud_skill_dash_colourless_border.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Textures/HUD/Skills/Animation/ui_hud_shard.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Textures/HUD/Lifebar/ui_hud_smoke.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Textures/HUD/Lifebar/ui_hud_life_symbol_hurt.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Textures/HUD/Lifebar/ui_hud_life_symbol_normal.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Textures/HUD/Skills/ui_hud_menu_leaf_empty.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Fonts/LargeMenuText.tres" type="DynamicFont" id=21]
+
+[sub_resource type="Animation" id=1]
+resource_name = "recovered_dash"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Dash:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.4, 1.4 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Dash:tint_under")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 0.3, 1 ),
+"update": 0,
+"values": [ Color( 0.952941, 0.866667, 0.396078, 1 ), Color( 1, 1, 1, 1 ), Color( 0.952941, 0.866667, 0.396078, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Dash/CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "recovered_grenade"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Grenade:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 0.3, 1 ),
+"update": 0,
+"values": [ Vector2( 0.85, 0.85 ), Vector2( 1.19, 1.19 ), Vector2( 0.85, 0.85 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Grenade:tint_under")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 0.3, 1 ),
+"update": 0,
+"values": [ Color( 0.952941, 0.866667, 0.396078, 1 ), Color( 1, 1, 1, 1 ), Color( 0.952941, 0.866667, 0.396078, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Grenade/CPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "grenade_label_scaling"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect/CenterContainer/Label:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect2/CenterContainer/Label:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Curve" id=4]
+max_value = 100.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.886179, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.605691, 0.920455 ), 2.46, 2.46, 0, 0, Vector2( 0.890244, 0.978409 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=6]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 360 ), 0.0, 0.0, 0, 0, Vector2( 1, -1.22327 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.189003, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.738832, 0.554545 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.980392, 0.529412, 0.666667, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.980392, 0.529412, 0.666667, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.45098, 0.34902, 0.317647, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.45098, 0.34902, 0.317647, 1 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=12]
+resource_name = "hurt"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 3.03143, 0.267943, 1 ),
+"update": 0,
+"values": [ Vector2( -91.25, -29.375 ), Vector2( -91.25, -60 ), Vector2( -91.25, 15 ), Vector2( -91.25, -29.375 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimatedSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.03, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0 ]
+}
+
+[sub_resource type="DynamicFont" id=13]
+size = 50
+outline_size = 1
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.237113, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.996564, 0.00681818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Animation" id=15]
+length = 3.0
+loop = true
+
+[sub_resource type="Animation" id=16]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Robot_Texture:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 0.8 ), Vector2( 1.1, 1.1 ), Vector2( 0.8, 0.8 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Robot_Texture/CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="HUD" type="Control"]
+anchor_left = -0.00131245
+anchor_right = 0.998688
+anchor_bottom = 1.0
+margin_left = 5.00225
+margin_top = -5.26831
+margin_right = 5.0022
+margin_bottom = -5.26831
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [ 65.6897, 169.851 ]
+}
+hit_visualizer_speed = 25
+
+[node name="ui_hud_skills_background" type="Sprite" parent="."]
+position = Vector2( 102.642, 577.459 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 8 )
+
+[node name="AnimationPlayerDash" type="AnimationPlayer" parent="ui_hud_skills_background"]
+anims/recovered_dash = SubResource( 1 )
+
+[node name="AnimationPlayerGrenade" type="AnimationPlayer" parent="ui_hud_skills_background"]
+anims/recovered_grenade = SubResource( 2 )
+
+[node name="LabelScaling" type="AnimationPlayer" parent="ui_hud_skills_background"]
+autoplay = "grenade_label_scaling"
+anims/grenade_label_scaling = SubResource( 3 )
+
+[node name="Dash" type="TextureProgress" parent="ui_hud_skills_background"]
+margin_left = -70.0
+margin_top = -147.0
+margin_right = 118.0
+margin_bottom = -39.0
+rect_pivot_offset = Vector2( 94, 54 )
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 6 )
+fill_mode = 1
+tint_under = Color( 0.952941, 0.866667, 0.396078, 1 )
+tint_progress = Color( 0.45098, 0.34902, 0.317647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ui_hud_skills_background/Dash"]
+position = Vector2( 2.53386, 54.7289 )
+amount = 3
+lifetime = 2.76
+speed_scale = 2.0
+texture = ExtResource( 9 )
+direction = Vector2( 0, 0 )
+spread = 0.0
+gravity = Vector2( 50, 0 )
+damping_curve = SubResource( 4 )
+scale_amount = 0.3
+scale_amount_curve = SubResource( 5 )
+
+[node name="TextureRect2" type="TextureRect" parent="ui_hud_skills_background"]
+margin_left = 25.7263
+margin_top = -54.4542
+margin_right = 153.726
+margin_bottom = 73.546
+rect_scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ui_hud_skills_background/TextureRect2"]
+margin_left = -55.5294
+margin_top = 1.47058
+margin_right = 185.471
+margin_bottom = 112.471
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ui_hud_skills_background/TextureRect2/CenterContainer"]
+margin_left = 101.0
+margin_top = 14.0
+margin_right = 139.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 20, 41 )
+custom_fonts/font = ExtResource( 21 )
+text = "Q"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grenade" type="TextureProgress" parent="ui_hud_skills_background"]
+margin_left = -83.31
+margin_top = 23.8884
+margin_right = 124.69
+margin_bottom = 209.888
+rect_scale = Vector2( 0.85, 0.85 )
+rect_pivot_offset = Vector2( 104, 98 )
+texture_under = ExtResource( 5 )
+texture_progress = ExtResource( 5 )
+fill_mode = 1
+tint_under = Color( 0.952941, 0.866667, 0.396078, 1 )
+tint_progress = Color( 0.45098, 0.34902, 0.317647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="ui_hud_skills_background/Grenade"]
+position = Vector2( 98.8552, 100.526 )
+rotation = 1.68283
+amount = 10
+speed_scale = 1.73
+randomness = 0.62
+lifetime_randomness = 0.41
+texture = ExtResource( 10 )
+emission_shape = 1
+emission_sphere_radius = 37.58
+flag_align_y = true
+direction = Vector2( 0, 0 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+linear_accel = 100.0
+linear_accel_random = 1.0
+radial_accel = 100.0
+angle_curve = SubResource( 6 )
+scale_amount_curve = SubResource( 7 )
+
+[node name="TextureRect" type="TextureRect" parent="ui_hud_skills_background"]
+margin_left = 34.8816
+margin_top = 173.958
+margin_right = 162.882
+margin_bottom = 301.958
+rect_scale = Vector2( 0.85, 0.85 )
+texture = ExtResource( 20 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="ui_hud_skills_background/TextureRect"]
+margin_left = -55.5294
+margin_top = 1.471
+margin_right = 185.471
+margin_bottom = 112.471
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ui_hud_skills_background/TextureRect/CenterContainer"]
+margin_left = 101.0
+margin_top = 14.0
+margin_right = 139.0
+margin_bottom = 96.0
+rect_pivot_offset = Vector2( 20, 41 )
+custom_fonts/font = ExtResource( 21 )
+text = "Q"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Time" type="Label" parent="."]
+visible = false
+margin_left = 883.38
+margin_top = 45.0332
+margin_right = 1084.38
+margin_bottom = 134.033
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 1, 0.784314, 0.313726, 1 )
+text = "00:00"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+visible = false
+margin_left = 14.0
+margin_top = 1060.0
+margin_right = 227.0
+margin_bottom = 1102.0
+text = "Project Overgrown - MS4"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Timer_Cool_Grenade" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Timer_Cool_Dash" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="PlayerHealth" type="ProgressBar" parent="."]
+margin_left = 188.75
+margin_top = 965.0
+margin_right = 583.75
+margin_bottom = 1009.0
+rect_scale = Vector2( 0.8, 0.8 )
+custom_styles/fg = SubResource( 9 )
+custom_styles/bg = SubResource( 10 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitVisualizer" type="ColorRect" parent="PlayerHealth"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 395.0
+color = Color( 0.901961, 0.12549, 0.490196, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui_hud_life_border" type="Sprite" parent="PlayerHealth"]
+position = Vector2( 153.044, -11.3721 )
+texture = ExtResource( 7 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PlayerHealth"]
+position = Vector2( -102.5, -29.375 )
+frames = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerHealth"]
+anims/hurt = SubResource( 12 )
+
+[node name="Robot_Texture" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 779.887
+margin_top = 280.917
+margin_right = 932.887
+margin_bottom = 499.917
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( 153, 219 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Robots_Left" type="Label" parent="Robot_Texture"]
+margin_left = -162.275
+margin_top = 67.3442
+margin_right = -55.2754
+margin_bottom = 140.344
+rect_scale = Vector2( 1.25, 1.25 )
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "0"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Robot_Texture"]
+position = Vector2( 122.037, -8.5769 )
+emitting = false
+amount = 1
+lifetime = 0.4
+one_shot = true
+texture = ExtResource( 17 )
+direction = Vector2( 0, -1 )
+spread = 0.0
+gravity = Vector2( 0, -50 )
+initial_velocity = 688.87
+scale_amount_curve = SubResource( 14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+"anims/New Anim" = SubResource( 15 )
+anims/robot_scaling = SubResource( 16 )
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer_Cool_Grenade" to="." method="_on_Timer_Cool_Grenade_timeout"]
+[connection signal="timeout" from="Timer_Cool_Dash" to="." method="_on_Timer_Cool_Dash_timeout"]

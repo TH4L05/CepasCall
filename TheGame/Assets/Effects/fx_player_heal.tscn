@@ -1,0 +1,104 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Textures/VFX/leaf.png" type="Texture" id=1]
+
+[sub_resource type="SpatialMaterial" id=28]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=29]
+colors = PoolColorArray( 0.912109, 0.801659, 0, 1, 0.309804, 0.996078, 0.278431, 0.584314 )
+
+[sub_resource type="GradientTexture" id=30]
+gradient = SubResource( 29 )
+
+[sub_resource type="ParticlesMaterial" id=31]
+direction = Vector3( 1, 1, 1 )
+spread = 180.0
+gravity = Vector3( 0, -0.1, 0 )
+initial_velocity = 3.22
+angular_velocity = 220.99
+damping = 2.58
+scale = 0.41
+color_ramp = SubResource( 30 )
+
+[sub_resource type="QuadMesh" id=32]
+
+[sub_resource type="Animation" id=33]
+resource_name = "process"
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Particles:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.0313817, 0, 0.410043, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Particles:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.0313817, 0, 0.590336, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Particles:scale:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.0313817, 0, 0.680483, 0.25, 0 ),
+"times": PoolRealArray( 0, 1 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../anim_player/Armature/Skeleton/player:material/0:emission")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.4, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0.87451, 1, 0, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[node name="Heal_Particles" type="Spatial"]
+
+[node name="Particles" type="Particles" parent="."]
+transform = Transform( 0.0313817, 0, 0, 0, 0.0313817, 0, 0, 0, 0.0313817, 0, 0.631857, 0 )
+material_override = SubResource( 28 )
+emitting = false
+amount = 15
+lifetime = 1.04
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource( 31 )
+draw_pass_1 = SubResource( 32 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/process = SubResource( 33 )

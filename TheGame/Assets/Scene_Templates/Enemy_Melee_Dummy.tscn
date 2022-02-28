@@ -1,0 +1,282 @@
+[gd_scene load_steps=38 format=2]
+
+[ext_resource path="res://Assets/Scene_Templates/Healthbar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Effects/fx_explosion_ranged.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Effects/fx_smoke_test.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Models/scene/anim_enemy_melee_dummy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scripts/Enemy_Melee_Dummy.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Models/export files/Flowers/enemy_flower.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Audio/Sound/Enemy/kaja/sound_enemy_explode.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Effects/fx_enemy_get_hit.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Audio/Sound/Enemy/kaja/sound_enemy_get.hit.wav" type="AudioStream" id=9]
+
+[sub_resource type="AnimationNodeAdd2" id=1]
+filter_enabled = true
+filters = [ "Armature/Skeleton:femur.l", "Armature/Skeleton:femur.r", "Armature/Skeleton:foot.l", "Armature/Skeleton:foot.r", "Armature/Skeleton:leg_ik.pole.l", "Armature/Skeleton:leg_ik.pole.r", "Armature/Skeleton:leg_ik.target.l", "Armature/Skeleton:leg_ik.target.r", "Armature/Skeleton:shin.l", "Armature/Skeleton:shin.r" ]
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "anim_enemy_melee_walk"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "anim_enemy_melee_attack"
+
+[sub_resource type="AnimationNodeBlendTree" id=4]
+graph_offset = Vector2( -415.245, -136 )
+nodes/Add2/node = SubResource( 1 )
+nodes/Add2/position = Vector2( 340, 40 )
+nodes/Animation/node = SubResource( 3 )
+nodes/Animation/position = Vector2( -180, 40 )
+"nodes/Animation 2/node" = SubResource( 2 )
+"nodes/Animation 2/position" = Vector2( -180, 180 )
+nodes/output/position = Vector2( 600, 120 )
+node_connections = [ "output", 0, "Add2", "Add2", 0, "Animation", "Add2", 1, "Animation 2" ]
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "anim_melee_death"
+
+[sub_resource type="AnimationNodeAnimation" id=6]
+animation = "anim_melee_get_hit"
+
+[sub_resource type="AnimationNodeAnimation" id=7]
+animation = "anim_melee_malfunction"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "anim_enemy_melee_walk"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "anim_melee_malfunction"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/Attack/node = SubResource( 4 )
+states/Attack/position = Vector2( 382, 38 )
+states/Death/node = SubResource( 5 )
+states/Death/position = Vector2( 1143, 44 )
+states/Get_hit/node = SubResource( 6 )
+states/Get_hit/position = Vector2( 654, -79.7 )
+states/Idle/node = SubResource( 7 )
+states/Idle/position = Vector2( 662, 166 )
+states/Walk/node = SubResource( 8 )
+states/Walk/position = Vector2( 847, 38 )
+states/malfunction/node = SubResource( 9 )
+states/malfunction/position = Vector2( 373, 113 )
+transitions = [ "Get_hit", "Walk", SubResource( 10 ), "Walk", "Get_hit", SubResource( 11 ), "Walk", "Attack", SubResource( 12 ), "Attack", "Walk", SubResource( 13 ), "Attack", "Get_hit", SubResource( 14 ), "Get_hit", "Attack", SubResource( 15 ), "Walk", "Death", SubResource( 16 ), "Get_hit", "Death", SubResource( 17 ), "Idle", "malfunction", SubResource( 18 ) ]
+start_node = "malfunction"
+end_node = "malfunction"
+graph_offset = Vector2( 119, -28.459 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
+
+[sub_resource type="Gradient" id=21]
+offsets = PoolRealArray( 0, 0.266667 )
+colors = PoolColorArray( 0.207031, 0.199753, 0.205553, 1, 0.0234375, 0.00814819, 0.0221236, 1 )
+
+[sub_resource type="GradientTexture" id=22]
+gradient = SubResource( 21 )
+
+[sub_resource type="Curve" id=23]
+_data = [ Vector2( 0, 0 ), 0.0, 22.2636, 0, 0, Vector2( 0.107595, 0.986364 ), 1.04013, 1.04013, 0, 0, Vector2( 0.765823, 0.504545 ), -1.96835, -1.96835, 0, 0, Vector2( 1, 0.00681818 ), -2.23833, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=24]
+curve = SubResource( 23 )
+
+[sub_resource type="ParticlesMaterial" id=25]
+emission_shape = 1
+emission_sphere_radius = 0.97
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 1, 0 )
+initial_velocity = 0.2
+angular_velocity = 360.0
+angular_velocity_random = 1.0
+linear_accel = 0.1
+scale = 0.07
+scale_random = 0.83
+scale_curve = SubResource( 24 )
+color_ramp = SubResource( 22 )
+
+[sub_resource type="BoxShape" id=26]
+extents = Vector3( 0.424474, 0.308082, 0.989804 )
+
+[sub_resource type="BoxShape" id=27]
+extents = Vector3( 0.65, 1, 0.5 )
+
+[sub_resource type="Animation" id=28]
+length = 2.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Healthbar:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "animation"
+tracks/2/path = NodePath("fx_explosion/AnimationPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": PoolStringArray( "process" ),
+"times": PoolRealArray( 0.3 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CollisionShape:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/4/type = "animation"
+tracks/4/path = NodePath("anim_enemy_melee_dummy/AnimationPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": PoolStringArray( "anim_melee_death" ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("smoke_fx/Particles2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Audio/Audio_Explode:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.3, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+
+[node name="Enemy_Dummy" type="KinematicBody" groups=["Enemy", "Enemy_Melee"]]
+collision_layer = 2
+collision_mask = 15
+script = ExtResource( 5 )
+dummy_mode = true
+flower = ExtResource( 6 )
+get_hit_fx = ExtResource( 8 )
+
+[node name="anim_enemy_melee_dummy" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+
+[node name="AnimationTree" type="AnimationTree" parent="anim_enemy_melee_dummy"]
+tree_root = SubResource( 19 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 20 )
+parameters/Attack/Add2/add_amount = 1.0
+
+[node name="smoke_fx" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.27999, -0.0430648, -0.0528219, -0.0340126, 0.30038, -0.0646046, 0.0626511, -0.0685036, -0.276241, -0.190402, 1.47368, -0.423008 )
+
+[node name="Particles2" parent="smoke_fx" index="0"]
+transform = Transform( 0.97284, -0.0290556, -0.236504, 0.0497331, 0.991798, 0.115266, 0.234382, -0.151453, 0.959364, -0.685609, 0.243816, -1.02433 )
+amount = 21
+visibility_aabb = AABB( -2, -1.68354, -2, 4, 3.36708, 4 )
+process_material = SubResource( 25 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.999921, 0.0126009, -2.05296e-09, 0, -1.62921e-07, -1, -0.0126009, 0.999921, -1.62908e-07, -0.15, 1.1, -0.135 )
+shape = SubResource( 26 )
+
+[node name="Hit_Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0 )
+collision_layer = 0
+collision_mask = 2304
+
+[node name="CollisionShape" type="CollisionShape" parent="Hit_Area"]
+shape = SubResource( 27 )
+
+[node name="Healthbar" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1.5, 0, 0, 0, -6.55671e-08, 1, 0, -1.5, -4.37114e-08, 0, 0.1, 0 )
+
+[node name="Position_Spawn_Plant" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/anim_die = SubResource( 28 )
+
+[node name="fx_explosion" parent="." instance=ExtResource( 2 )]
+
+[node name="get_hit_particles" parent="." instance=ExtResource( 8 )]
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Audio_Explode" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 7 )
+volume_db = -13.0
+bus = "Enemy_Sound"
+
+[node name="Audio_Get_Hit" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 9 )
+volume_db = -20.0
+bus = "Enemy_Sound"
+
+[connection signal="area_entered" from="Hit_Area" to="." method="_on_Hit_Area_area_entered"]
+
+[editable path="anim_enemy_melee_dummy"]
+[editable path="smoke_fx"]
+[editable path="fx_explosion"]

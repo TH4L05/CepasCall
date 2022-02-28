@@ -1,0 +1,472 @@
+[gd_scene load_steps=53 format=2]
+
+[ext_resource path="res://Assets/Textures/Test/crosshair.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Models/scene/flowers_player_01.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Audio/Sound/Player/kaja/sound_player_summon.grenade.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Scene_Templates/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scripts/Player.gd" type="Script" id=5]
+[ext_resource path="res://Assets/Scene_Templates/Bullet.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Textures/VFX/leaf.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Scene_Templates/Grenade.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Effects/fx_butterflies.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Models/scene/player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Textures/Objects/tex_player.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Effects/fx_player_get_hit.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Effects/fx_dash.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Audio/Sound/Player/kaja/sound_player_get.hit.wav" type="AudioStream" id=14]
+[ext_resource path="res://Assets/Audio/Sound/Player/kaja/sound_player_shot.wav" type="AudioStream" id=15]
+[ext_resource path="res://Assets/Audio/Sound/Player/kaja/sound_player_dash.wav" type="AudioStream" id=16]
+[ext_resource path="res://Assets/Audio/Sound/Player/kaja/sound_player_walk.wav" type="AudioStream" id=17]
+[ext_resource path="res://Assets/Models/scene/flowers_player_02.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Assets/Models/export files/Grass/grass/grass_walk.tscn" type="PackedScene" id=19]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.2, 0.2, 0.3 )
+
+[sub_resource type="Animation" id=2]
+length = 0.46
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.46 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../CameraPivot/Camera:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.14, 0.25, 0.36, 0.46 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 9, 0 ), Vector3( 0, 9, 0 ), Vector3( 0.1, 9, 0 ), Vector3( 0, 9, -0.1 ), Vector3( 0.1, 9, -0.1 ), Vector3( 0, 9, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../CameraPivot/Camera:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.14, 0.36, 0.46 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( -60, 0, 0 ), Vector3( -60, 0, 0 ), Vector3( -60, 0, 0.2 ), Vector3( -60, 0, -0.2 ), Vector3( -60, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ColorRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.22, 0.46 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.176471 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 11 )
+metallic_specular = 0.0
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Grenade"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Dash_forward"
+
+[sub_resource type="AnimationNodeBlend2" id=6]
+
+[sub_resource type="AnimationNodeBlend2" id=7]
+
+[sub_resource type="AnimationNodeBlend2" id=8]
+
+[sub_resource type="AnimationNodeBlend2" id=9]
+
+[sub_resource type="AnimationNodeBlend2" id=10]
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Hurt"
+
+[sub_resource type="AnimationNodeTimeSeek" id=12]
+
+[sub_resource type="AnimationNodeTimeSeek" id=13]
+
+[sub_resource type="AnimationNodeTimeSeek" id=14]
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Spin_Shoot"
+
+[sub_resource type="AnimationNodeTimeScale" id=17]
+
+[sub_resource type="AnimationNodeTimeScale" id=18]
+
+[sub_resource type="AnimationNodeTimeScale" id=19]
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "anim_player_walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "anim_player_walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id=22]
+animation = "anim_player_walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "anim_player_walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id=25]
+blend_point_0/node = SubResource( 20 )
+blend_point_0/pos = Vector2( 0, 1 )
+blend_point_1/node = SubResource( 21 )
+blend_point_1/pos = Vector2( 0, -1 )
+blend_point_2/node = SubResource( 22 )
+blend_point_2/pos = Vector2( -1, 0 )
+blend_point_3/node = SubResource( 23 )
+blend_point_3/pos = Vector2( 1, 0 )
+blend_point_4/node = SubResource( 24 )
+blend_point_4/pos = Vector2( 0, 0 )
+
+[sub_resource type="AnimationNodeBlendTree" id=26]
+graph_offset = Vector2( -71, 243.5 )
+nodes/Animation/node = SubResource( 5 )
+nodes/Animation/position = Vector2( 520, 40 )
+"nodes/Animation 2/node" = SubResource( 4 )
+"nodes/Animation 2/position" = Vector2( 200, 440 )
+nodes/Blend2/node = SubResource( 6 )
+nodes/Blend2/position = Vector2( 980, 40 )
+nodes/BlendDash/node = SubResource( 7 )
+nodes/BlendDash/position = Vector2( 760, -20 )
+nodes/BlendGrenade/node = SubResource( 8 )
+nodes/BlendGrenade/position = Vector2( 760, 180 )
+nodes/BlendHurt/node = SubResource( 9 )
+nodes/BlendHurt/position = Vector2( 1360, 0 )
+nodes/BlendShoot/node = SubResource( 10 )
+nodes/BlendShoot/position = Vector2( 540, 160 )
+nodes/Hurt/node = SubResource( 11 )
+nodes/Hurt/position = Vector2( 1160, 120 )
+nodes/Seek/node = SubResource( 12 )
+nodes/Seek/position = Vector2( 460, 420 )
+nodes/SeekShoot1/node = SubResource( 13 )
+nodes/SeekShoot1/position = Vector2( 120, 160 )
+nodes/SeekShoot2/node = SubResource( 14 )
+nodes/SeekShoot2/position = Vector2( 300, 300 )
+nodes/Shoot_1/node = SubResource( 15 )
+nodes/Shoot_1/position = Vector2( -40, 180 )
+nodes/Shoot_2/node = SubResource( 16 )
+nodes/Shoot_2/position = Vector2( 0, 300 )
+nodes/TS_Walk/node = SubResource( 17 )
+nodes/TS_Walk/position = Vector2( 560, -100 )
+nodes/TimeScale/node = SubResource( 18 )
+nodes/TimeScale/position = Vector2( 600, 360 )
+nodes/TimeScaleShoot1/node = SubResource( 19 )
+nodes/TimeScaleShoot1/position = Vector2( 300, 140 )
+nodes/Walk/node = SubResource( 25 )
+nodes/Walk/position = Vector2( 320, -180 )
+nodes/output/position = Vector2( 1560, 20 )
+node_connections = [ "output", 0, "BlendHurt", "Blend2", 0, "BlendDash", "Blend2", 1, "BlendGrenade", "BlendGrenade", 0, "BlendShoot", "BlendGrenade", 1, "TimeScale", "SeekShoot2", 0, "Shoot_2", "TS_Walk", 0, "Walk", "TimeScale", 0, "Seek", "BlendDash", 0, "TS_Walk", "BlendDash", 1, "Animation", "TimeScaleShoot1", 0, "SeekShoot1", "Seek", 0, "Animation 2", "BlendHurt", 0, "Blend2", "BlendHurt", 1, "Hurt", "SeekShoot1", 0, "Shoot_1", "BlendShoot", 0, "TimeScaleShoot1", "BlendShoot", 1, "SeekShoot2" ]
+
+[sub_resource type="BoxShape" id=27]
+extents = Vector3( 0.3, 0.5, 0.3 )
+
+[sub_resource type="SpatialMaterial" id=28]
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 7 )
+
+[sub_resource type="Gradient" id=29]
+colors = PoolColorArray( 0.912109, 0.801659, 0, 1, 0.309804, 0.996078, 0.278431, 0.584314 )
+
+[sub_resource type="GradientTexture" id=30]
+gradient = SubResource( 29 )
+
+[sub_resource type="ParticlesMaterial" id=31]
+direction = Vector3( 1, 1, 1 )
+spread = 180.0
+gravity = Vector3( 0, -0.1, 0 )
+initial_velocity = 3.22
+angular_velocity = 220.99
+damping = 2.58
+scale = 0.41
+color_ramp = SubResource( 30 )
+
+[sub_resource type="QuadMesh" id=32]
+
+[sub_resource type="Animation" id=33]
+resource_name = "process"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../anim_player/Armature/Skeleton/player:material/0:emission")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7, 0.9, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0.92549, 0.898039, 0.188235, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector3( 1, 1, 1 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Player" type="KinematicBody" groups=[
+"Player",
+]]
+collision_mask = 4286
+script = ExtResource( 5 )
+bullet = ExtResource( 6 )
+flower1 = ExtResource( 2 )
+flower2 = ExtResource( 18 )
+grass = ExtResource( 19 )
+grenade = ExtResource( 8 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.3, 0 )
+shape = SubResource( 1 )
+
+[node name="CameraPivot" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="Camera" type="Camera" parent="CameraPivot"]
+transform = Transform( 1, 0, 0, 0, 0.5, 0.866026, 0, -0.866026, 0.5, 0, 9, 0 )
+v_offset = -4.0
+current = true
+
+[node name="Crosshair" type="TextureRect" parent="CameraPivot"]
+visible = false
+margin_left = 512.0
+margin_top = 325.0
+margin_right = 552.0
+margin_bottom = 365.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="Damage_Screen" type="Control" parent="."]
+visible = false
+margin_right = 1920.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Damage_Screen"]
+modulate = Color( 1, 0, 0, 0 )
+margin_right = 1913.0
+margin_bottom = 1079.0
+color = Color( 1, 0.298039, 0.298039, 0.8 )
+
+[node name="AnimDC" type="AnimationPlayer" parent="Damage_Screen"]
+anims/anim_player_got_damage = SubResource( 2 )
+
+[node name="anim_player" parent="." instance=ExtResource( 10 )]
+transform = Transform( -1, 0, -3.25841e-07, 0, 1, 0, 3.25841e-07, 0, -1, 0, 0, 0 )
+
+[node name="Skeleton" parent="anim_player/Armature" index="0"]
+bones/20/bound_children = [ NodePath("BoneAttachment") ]
+
+[node name="player" parent="anim_player/Armature/Skeleton" index="0"]
+material/0 = SubResource( 3 )
+
+[node name="BoneAttachment" type="BoneAttachment" parent="anim_player/Armature/Skeleton" index="3"]
+transform = Transform( -0.0294547, 0.445547, 0.859514, 0.3426, -0.799471, 0.426163, 0.905489, 0.316983, -0.133285, 0.321728, 0.116878, -0.0220452 )
+bone_name = "hand.r"
+
+[node name="Position_Grenade2" type="Position3D" parent="anim_player/Armature/Skeleton/BoneAttachment"]
+transform = Transform( -0.999515, -7.6741e-07, -2.79397e-07, 6.14673e-07, 0.999517, -1.16229e-06, -1.25542e-06, 1.49012e-07, -0.999513, -0.00209761, 0.0274312, -0.10501 )
+
+[node name="AnimationPlayer" parent="anim_player" index="1"]
+autoplay = "Idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 26 )
+anim_player = NodePath("../anim_player/AnimationPlayer")
+active = true
+parameters/Blend2/blend_amount = 0.0
+parameters/BlendDash/blend_amount = 0.0
+parameters/BlendGrenade/blend_amount = 0.0
+parameters/BlendHurt/blend_amount = 0
+parameters/BlendShoot/blend_amount = 0.0
+parameters/Seek/seek_position = -1.0
+parameters/SeekShoot1/seek_position = 0.0
+parameters/SeekShoot2/seek_position = 0.0
+parameters/TS_Walk/scale = 0.7
+parameters/TimeScale/scale = 0.5
+parameters/TimeScaleShoot1/scale = 2.0
+parameters/Walk/blend_position = Vector2( 0, 0 )
+
+[node name="HitArea" type="Area" parent="." groups=[
+"Player_Hit_Area",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
+input_ray_pickable = false
+priority = 1.0
+collision_layer = 0
+collision_mask = 1552
+
+[node name="CollisionShape" type="CollisionShape" parent="HitArea"]
+shape = SubResource( 27 )
+
+[node name="FX" type="Node" parent="."]
+
+[node name="fx_butterflies" parent="FX" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25037, 0 )
+cast_shadow = 0
+visibility_aabb = AABB( -1.96382, -1.23499, -1.48175, 3.84703, 4.21176, 3.57201 )
+
+[node name="Hit_particles" parent="FX" instance=ExtResource( 12 )]
+visibility_aabb = AABB( -2.50133, -1, -2.77846, 4.7098, 4.06552, 5.62232 )
+
+[node name="Dash_Particle" parent="FX" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.442852, 0 )
+visibility_aabb = AABB( -1, -1.44285, -1, 2, 2.44285, 2 )
+
+[node name="Heal_Particles" type="Spatial" parent="FX"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.257842, 0 )
+
+[node name="Particles" type="Particles" parent="FX/Heal_Particles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.631857, 0 )
+material_override = SubResource( 28 )
+emitting = false
+amount = 15
+lifetime = 1.04
+one_shot = true
+explosiveness = 0.75
+visibility_aabb = AABB( -2.73136, -2.88848, -2.49851, 4.89668, 5.74618, 4.6542 )
+process_material = SubResource( 31 )
+draw_pass_1 = SubResource( 32 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FX/Heal_Particles"]
+anims/process = SubResource( 33 )
+
+[node name="Position_Grenade" type="Position3D" parent="."]
+transform = Transform( 0.999514, 0, 0, 0, 0.999515, 0, 0, 0, 0.999512, -0.328, 1.20808, -0.178 )
+
+[node name="Position_Shoot" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -0.7 )
+
+[node name="Position_Flower" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.2 )
+
+[node name="Audio" type="Node" parent="."]
+
+[node name="Audio_Shot" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 15 )
+volume_db = -14.161
+pitch_scale = 0.72
+bus = "Player_Sound"
+
+[node name="Audio_Walk" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 17 )
+volume_db = -0.189
+pitch_scale = 2.0
+bus = "Player_Sound"
+
+[node name="Audio_Dash" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 16 )
+volume_db = -7.032
+bus = "Player_Sound"
+
+[node name="Audio_Summon_Grenade" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+volume_db = -12.581
+bus = "Player_Sound"
+
+[node name="Audio_Get_hit" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 14 )
+volume_db = -14.258
+pitch_scale = 1.16
+bus = "Player_Sound"
+
+[node name="Timer_Shoot" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer_Shoot_Animation" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="Timer_Dash_Duration" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Timer_Dash_Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer_Grenade_Cooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="Timer_Plant_Spawn" type="Timer" parent="."]
+wait_time = 0.06
+autostart = true
+
+[node name="Timer_Hurt" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Timer_greanade_anim" type="Timer" parent="."]
+wait_time = 0.7
+one_shot = true
+
+[connection signal="area_entered" from="HitArea" to="." method="_on_HitArea_area_entered"]
+[connection signal="timeout" from="Timer_Shoot" to="." method="_on_Timer_Shoot_timeout"]
+[connection signal="timeout" from="Timer_Shoot_Animation" to="." method="_on_Timer_Shoot_Animation_timeout"]
+[connection signal="timeout" from="Timer_Dash_Duration" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer_Dash_Cooldown" to="." method="_on_Timer_Dash_Cooldown_timeout"]
+[connection signal="timeout" from="Timer_Grenade_Cooldown" to="." method="_on_Timer_Grenade_Cooldown_timeout"]
+[connection signal="timeout" from="Timer_Plant_Spawn" to="." method="_on_Timer_Plant_Spawn_timeout"]
+[connection signal="timeout" from="Timer_Hurt" to="." method="_on_Timer_Hurt_timeout"]
+[connection signal="timeout" from="Timer_greanade_anim" to="." method="_on_Timer_greanade_anim_timeout"]
+
+[editable path="anim_player"]

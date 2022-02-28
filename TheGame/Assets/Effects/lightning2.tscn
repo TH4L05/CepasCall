@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Effects/scrolling.tres" type="Material" id=1]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="PlaneMesh" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = ExtResource( 1 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="."]
+transform = Transform( -1.08262, -0.0194322, 0.0148426, 0.0213457, -0.973156, 0.0004865, -0.733022, 0.00112998, 1.86704, -0.0198902, 0, -0.0257052 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = ExtResource( 1 )

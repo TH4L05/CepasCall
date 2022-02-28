@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Materials/sparkle.tres" type="QuadMesh" id=1]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.885548, 0.144531, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.411392, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 0.19
+angular_velocity = 362.6
+radial_accel = -0.44
+scale = 0.08
+scale_random = 0.38
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+anim_speed = 0.69
+anim_speed_random = 1.0
+
+[node name="Particles2" type="Particles"]
+transform = Transform( 0.0363919, 0.181159, -1.07069, -0.721327, -0.796764, -0.159327, -0.811721, 0.716156, 0.0935847, 0.00728428, 0.190011, 0.0135503 )
+visible = false
+amount = 12
+lifetime = 0.62
+local_coords = false
+process_material = SubResource( 5 )
+draw_pass_1 = ExtResource( 1 )

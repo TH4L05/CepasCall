@@ -1,0 +1,49 @@
+extends Control
+
+var seconds = 0
+var minutes = 0
+var grenade_cooldown_time = 0.0
+var dash_cooldown_time = 0.0
+var d = false
+var g = false
+
+
+func _ready():
+	pass
+
+func _process(delta):
+	if g:
+		$ui_hud_skills_background/Grenade.value = int(($Timer_Cool_Grenade.time_left / grenade_cooldown_time) *100)
+	if d:
+		$ui_hud_skills_background/Dash.value = int(($Timer_Cool_Dash.time_left / dash_cooldown_time) *100)
+
+
+
+func time():
+	seconds +=1
+	if seconds > 59:
+		minutes += 1
+		seconds = 0
+	$Time.text = "%02d:%02d" %[minutes, seconds]
+
+func grenade_cooldown(time_value):
+	grenade_cooldown_time = time_value
+	$Timer_Cool_Grenade.start(grenade_cooldown_time)
+	g = true
+	$ui_hud_skills_background/Grenade/CPUParticles2D.emitting = false
+
+func dash_cooldown(time_value):
+	dash_cooldown_time = time_value
+	$Timer_Cool_Dash.start(dash_cooldown_time)
+	d = true
+	$ui_hud_skills_background/Dash/CPUParticles2D.emitting = false
+
+func _on_Timer_Cool_Grenade_timeout():
+	$ui_hud_skills_background/Grenade.value = int(0)
+	g = false
+	$ui_hud_skills_background/Grenade/CPUParticles2D.emitting = true
+	
+func _on_Timer_Cool_Dash_timeout():
+	$ui_hud_skills_background/Dash.value = int(0)
+	d = false
+	$ui_hud_skills_background/Dash/CPUParticles2D.emitting = true

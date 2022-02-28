@@ -1,0 +1,337 @@
+[gd_scene load_steps=37 format=2]
+
+[ext_resource path="res://Assets/Scripts/TestLevel2b.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Textures/Test/Grass.jpg" type="Texture" id=3]
+[ext_resource path="res://Assets/Scene_Templates/Test/TEST_Door1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scene_Templates/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Scene_Templates/Dead_Screen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Scene_Templates/Pause_Menu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/MeshLibarys/Tree_final.tres" type="MeshLibrary" id=8]
+[ext_resource path="res://Assets/Scene_Templates/Enemy_Range.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Scene_Templates/Enemy_Melee.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Textures/VFX/butterfly_spritesheet.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Scene_Templates/Pick_Up_Healing_Flower_Full.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Scripts/Test/Path.gd" type="Script" id=13]
+[ext_resource path="res://addons/kenney_particle_pack/star_06.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Materials/outline.material" type="Material" id=15]
+[ext_resource path="res://Assets/Scene_Templates/Pick_Up_Healing_Flower.tscn" type="PackedScene" id=16]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.0745098, 0.364706, 0.192157, 1 )
+albedo_texture = ExtResource( 3 )
+metallic_specular = 0.0
+uv1_scale = Vector3( 0.075, 0.075, 0.075 )
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 200, 200 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 100, 1, 100 )
+
+[sub_resource type="ProceduralSky" id=4]
+radiance_size = 3
+sky_top_color = Color( 0.0509804, 0.2, 0.282353, 1 )
+sky_horizon_color = Color( 0.866667, 0.588235, 0.227451, 1 )
+ground_horizon_color = Color( 0.215686, 0.352941, 0.301961, 1 )
+sun_color = Color( 0.92549, 0.670588, 0.117647, 1 )
+sun_latitude = 2.0
+sun_energy = 8.0
+
+[sub_resource type="Environment" id=5]
+background_mode = 2
+background_sky = SubResource( 4 )
+tonemap_mode = 2
+ss_reflections_enabled = true
+ssao_enabled = true
+dof_blur_far_enabled = true
+dof_blur_far_distance = 55.0
+dof_blur_far_transition = 8.0
+glow_enabled = true
+glow_intensity = 0.6
+glow_strength = 0.9
+glow_bloom = 0.1
+glow_blend_mode = 1
+adjustment_enabled = true
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 7.69762, 3.61728, 1 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0.984314, 0.352941, 0.0431373, 1 )
+
+[sub_resource type="PlaneMesh" id=8]
+material = SubResource( 7 )
+size = Vector2( 15, 2 )
+
+[sub_resource type="Curve3D" id=9]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -7.26966, 2.06543, -1.95092, 0, 0, 0, 0, 0, 0, -5.77861, 1.28483, -1.27194, 0, 0, 0, 0, 0, 0, -4.08728, 1.45204, 0.0592155, 0, 0, 0, 0, 0, 0, -0.897492, 1.35161, -0.0999641, 0, 0, 0, 0, 0, 0, 0.177076, 1.62755, -1.90048, 0, 0, 0, 0, 0, 0, -1.6329, 1.95731, -2.17967, 0, 0, 0, 0, 0, 0, -3.7153, 1.83287, -1.83206, 0, 0, 0, 0, 0, 0, -7.5859, 1.09374, -0.735538, 0, 0, 0, 0, 0, 0, -9.37372, 1.66861, -1.45435, 0, 0, 0, 0, 0, 0, -8.58346, 2.52637, -2.62346, 0, 0, 0, 0, 0, 0, -7.26966, 2.06543, -1.95092 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="SpatialMaterial" id=10]
+flags_transparent = true
+flags_disable_ambient_light = true
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.596078, 0.141176, 0.141176, 1 )
+albedo_texture = ExtResource( 14 )
+emission_enabled = true
+emission = Color( 1, 0.266667, 0.266667, 1 )
+emission_energy = 8.0
+emission_operator = 0
+emission_on_uv2 = false
+rim_enabled = true
+rim = 0.1
+rim_tint = 0.4
+
+[sub_resource type="QuadMesh" id=11]
+material = SubResource( 10 )
+
+[sub_resource type="Curve" id=12]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 206.182 ), 0.0, 0.0, 0, 0, Vector2( 1, 16.3636 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.145669, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0090909 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=14]
+offsets = PoolRealArray( 0, 0.541126, 1 )
+colors = PoolColorArray( 1, 0, 0, 1, 0, 1, 0.25098, 1, 0, 0.368627, 1, 1 )
+
+[sub_resource type="Animation" id=15]
+resource_name = "New Anim"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("PathFollow:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[sub_resource type="SpatialMaterial" id=16]
+next_pass = ExtResource( 15 )
+flags_transparent = true
+params_blend_mode = 1
+params_cull_mode = 2
+params_billboard_mode = 3
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+albedo_color = Color( 0, 0, 0, 1 )
+albedo_texture = ExtResource( 11 )
+emission_enabled = true
+emission = Color( 0.760784, 0.411765, 0.972549, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="QuadMesh" id=17]
+material = SubResource( 16 )
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0.00393701, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.704724, 0.736364 ), -1.28283, -1.28283, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="BoxShape" id=19]
+
+[sub_resource type="SpatialMaterial" id=20]
+albedo_color = Color( 0.180392, 0.266667, 0.517647, 1 )
+metallic = 0.79
+metallic_specular = 0.65
+roughness = 0.8
+rim_enabled = true
+rim = 1.0
+rim_tint = 0.49
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_gloss = 1.0
+
+[sub_resource type="PlaneMesh" id=21]
+material = SubResource( 20 )
+
+[node name="TestLevel2b" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07696, 0, -48.5241 )
+
+[node name="Dead_Screen" parent="." instance=ExtResource( 6 )]
+pause_mode = 2
+
+[node name="Pause_Menu" parent="." instance=ExtResource( 7 )]
+
+[node name="Enemy" type="Node" parent="."]
+
+[node name="Group1" type="Node" parent="Enemy"]
+
+[node name="Enemy_Range1" parent="Enemy/Group1" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0742, 0, -63.4324 )
+
+[node name="Enemy_Range2" parent="Enemy/Group1" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.703, 0, -80.6981 )
+
+[node name="Enemy_Melee" parent="Enemy/Group1" instance=ExtResource( 10 )]
+transform = Transform( 0.827561, 0, 0.561376, 0, 1, 0, -0.561376, 0, 0.827561, 3.3553, 0, -91.8872 )
+
+[node name="Enemy_Melee2" parent="Enemy/Group1" instance=ExtResource( 10 )]
+transform = Transform( -0.948633, 0, 0.316377, 0, 1, 0, -0.316377, 0, -0.948633, 10.196, 0, -63.2377 )
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="GridMap" type="GridMap" parent="Objects"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+mesh_library = ExtResource( 8 )
+data = {
+"cells": PoolIntArray( 0, 65475, 4, 1, 65475, 4, 2, 65475, 4, 3, 65475, 4, 4, 65475, 4, 5, 65475, 4, 6, 65475, 4, 7, 65475, 4, 8, 65475, 4, 65534, 65475, 4, 65535, 65475, 4, 0, 65476, 4, 1, 65476, 4, 2, 65476, 4, 3, 65476, 4, 4, 65476, 4, 5, 65476, 4, 6, 65476, 4, 7, 65476, 4, 8, 65476, 4, 9, 65476, 4, 65533, 65476, 4, 65534, 65476, 4, 65535, 65476, 4, 0, 65477, 4, 1, 65477, 4, 2, 65477, 4, 3, 65477, 4, 4, 65477, 4, 5, 65477, 4, 6, 65477, 4, 7, 65477, 4, 8, 65477, 4, 9, 65477, 4, 10, 65477, 4, 65532, 65477, 4, 65533, 65477, 4, 65534, 65477, 4, 65535, 65477, 4, 0, 65478, 4, 1, 65478, 4, 2, 65478, 4, 3, 65478, 4, 4, 65478, 4, 5, 65478, 4, 6, 65478, 4, 7, 65478, 4, 8, 65478, 4, 9, 65478, 4, 10, 65478, 4, 11, 65478, 4, 65531, 65478, 4, 65532, 65478, 4, 65533, 65478, 4, 65534, 65478, 4, 65535, 65478, 4, 0, 65479, 4, 1, 65479, 4, 2, 65479, 4, 3, 65479, 4, 4, 65479, 4, 5, 65479, 4, 6, 65479, 4, 7, 65479, 4, 8, 65479, 4, 9, 65479, 4, 10, 65479, 4, 11, 65479, 4, 12, 65479, 4, 65530, 65479, 4, 65531, 65479, 4, 65532, 65479, 4, 65533, 65479, 4, 65534, 65479, 4, 65535, 65479, 4, 10, 65480, 4, 11, 65480, 4, 12, 65480, 4, 13, 65480, 4, 65529, 65480, 4, 65530, 65480, 4, 65531, 65480, 4, 11, 65481, 4, 12, 65481, 4, 13, 65481, 4, 14, 65481, 4, 65528, 65481, 4, 65529, 65481, 4, 65530, 65481, 4, 12, 65482, 4, 13, 65482, 4, 14, 65482, 4, 15, 65482, 4, 65527, 65482, 4, 65528, 65482, 4, 65529, 65482, 4, 13, 65483, 4, 15, 65483, 4, 16, 65483, 4, 65526, 65483, 4, 65527, 65483, 4, 65528, 65483, 4, 14, 65484, 4, 15, 65484, 4, 16, 65484, 4, 17, 65484, 4, 65525, 65484, 4, 65526, 65484, 4, 65527, 65484, 4, 15, 65485, 4, 16, 65485, 4, 17, 65485, 4, 18, 65485, 4, 65524, 65485, 4, 65525, 65485, 4, 65526, 65485, 4, 15, 65486, 4, 16, 65486, 4, 17, 65486, 4, 18, 65486, 4, 65523, 65486, 4, 65524, 65486, 4, 65525, 65486, 4, 65526, 65486, 4, 15, 65487, 4, 16, 65487, 4, 17, 65487, 4, 18, 65487, 4, 65523, 65487, 4, 65524, 65487, 4, 65525, 65487, 4, 65526, 65487, 4, 15, 65488, 4, 16, 65488, 4, 17, 65488, 4, 18, 65488, 4, 65523, 65488, 4, 65524, 65488, 4, 65525, 65488, 4, 65526, 65488, 4, 15, 65489, 4, 16, 65489, 4, 17, 65489, 4, 18, 65489, 4, 65523, 65489, 4, 65524, 65489, 4, 65525, 65489, 4, 65526, 65489, 4, 15, 65490, 4, 16, 65490, 4, 17, 65490, 4, 18, 65490, 4, 65523, 65490, 4, 65524, 65490, 4, 65525, 65490, 4, 65526, 65490, 4, 15, 65491, 4, 16, 65491, 4, 17, 65491, 4, 18, 65491, 4, 65523, 65491, 4, 65524, 65491, 4, 65525, 65491, 4, 65526, 65491, 4, 15, 65492, 4, 16, 65492, 4, 17, 65492, 4, 18, 65492, 4, 65523, 65492, 4, 65524, 65492, 4, 65525, 65492, 4, 65526, 65492, 4, 15, 65493, 4, 16, 65493, 4, 17, 65493, 4, 18, 65493, 4, 65523, 65493, 4, 65524, 65493, 4, 65525, 65493, 4, 65526, 65493, 4, 15, 65494, 4, 16, 65494, 4, 17, 65494, 4, 18, 65494, 4, 65523, 65494, 4, 65524, 65494, 4, 65525, 65494, 4, 65526, 65494, 4, 15, 65495, 4, 16, 65495, 4, 17, 65495, 4, 18, 65495, 4, 65523, 65495, 4, 65524, 65495, 4, 65525, 65495, 4, 65526, 65495, 4, 15, 65496, 4, 16, 65496, 4, 17, 65496, 4, 18, 65496, 4, 65523, 65496, 4, 65524, 65496, 4, 65525, 65496, 4, 65526, 65496, 4, 14, 65497, 4, 15, 65497, 4, 16, 65497, 4, 17, 65497, 4, 18, 65497, 4, 65523, 65497, 4, 65524, 65497, 4, 65525, 65497, 4, 65526, 65497, 4, 65527, 65497, 4, 13, 65498, 4, 14, 65498, 4, 15, 65498, 4, 16, 65498, 4, 17, 65498, 4, 65524, 65498, 4, 65525, 65498, 4, 65526, 65498, 4, 65527, 65498, 4, 65528, 65498, 4, 12, 65499, 4, 13, 65499, 4, 14, 65499, 4, 15, 65499, 4, 16, 65499, 4, 65525, 65499, 4, 65526, 65499, 4, 65527, 65499, 4, 65528, 65499, 4, 65529, 65499, 4, 11, 65500, 4, 12, 65500, 4, 13, 65500, 4, 14, 65500, 4, 15, 65500, 4, 65526, 65500, 4, 65527, 65500, 4, 65528, 65500, 4, 65529, 65500, 4, 65530, 65500, 4, 10, 65501, 4, 11, 65501, 4, 12, 65501, 4, 13, 65501, 4, 14, 65501, 4, 65526, 65501, 4, 65527, 65501, 4, 65528, 65501, 4, 65529, 65501, 4, 65530, 65501, 4, 65531, 65501, 4, 9, 65502, 4, 10, 65502, 4, 11, 65502, 4, 12, 65502, 4, 13, 65502, 4, 65527, 65502, 4, 65528, 65502, 4, 65529, 65502, 4, 65530, 65502, 4, 65531, 65502, 4, 65532, 65502, 4, 8, 65503, 4, 9, 65503, 4, 10, 65503, 4, 11, 65503, 4, 12, 65503, 4, 65528, 65503, 4, 65529, 65503, 4, 65530, 65503, 4, 65531, 65503, 4, 65532, 65503, 4, 65533, 65503, 4, 7, 65504, 4, 8, 65504, 4, 9, 65504, 4, 10, 65504, 4, 11, 65504, 4, 65529, 65504, 4, 65530, 65504, 4, 65531, 65504, 4, 65532, 65504, 4, 65533, 65504, 4, 65534, 65504, 4, 7, 65505, 4, 8, 65505, 4, 9, 65505, 4, 10, 65505, 4, 65530, 65505, 4, 65531, 65505, 4, 65532, 65505, 4, 65533, 65505, 4, 65534, 65505, 4, 7, 65506, 4, 8, 65506, 4, 9, 65506, 4, 10, 65506, 4, 65531, 65506, 4, 65532, 65506, 4, 65533, 65506, 4, 65534, 65506, 4, 7, 65507, 4, 8, 65507, 4, 9, 65507, 4, 10, 65507, 4, 65531, 65507, 4, 65532, 65507, 4, 65533, 65507, 4, 65534, 65507, 4, 7, 65508, 4, 8, 65508, 4, 9, 65508, 4, 10, 65508, 4, 65531, 65508, 4, 65532, 65508, 4, 65533, 65508, 4, 65534, 65508, 4, 7, 65509, 4, 8, 65509, 4, 9, 65509, 4, 10, 65509, 4, 11, 65509, 4, 65530, 65509, 4, 65531, 65509, 4, 65532, 65509, 4, 65533, 65509, 4, 65534, 65509, 4, 8, 65510, 4, 9, 65510, 4, 10, 65510, 4, 11, 65510, 4, 12, 65510, 4, 65529, 65510, 4, 65530, 65510, 4, 65531, 65510, 4, 65532, 65510, 4, 65533, 65510, 4, 9, 65511, 4, 10, 65511, 4, 11, 65511, 4, 12, 65511, 4, 13, 65511, 4, 65528, 65511, 4, 65529, 65511, 4, 65530, 65511, 4, 65531, 65511, 4, 65532, 65511, 4, 10, 65512, 4, 11, 65512, 4, 12, 65512, 4, 13, 65512, 4, 14, 65512, 4, 65527, 65512, 4, 65528, 65512, 4, 65529, 65512, 4, 65530, 65512, 4, 65531, 65512, 4, 11, 65513, 4, 12, 65513, 4, 13, 65513, 4, 14, 65513, 4, 15, 65513, 4, 65526, 65513, 4, 65527, 65513, 4, 65528, 65513, 4, 65529, 65513, 4, 65530, 65513, 4, 12, 65514, 4, 13, 65514, 4, 14, 65514, 4, 15, 65514, 4, 16, 65514, 4, 65525, 65514, 4, 65526, 65514, 4, 65527, 65514, 4, 65528, 65514, 4, 65529, 65514, 4, 13, 65515, 4, 14, 65515, 4, 15, 65515, 4, 16, 65515, 4, 65525, 65515, 4, 65526, 65515, 4, 65527, 65515, 4, 65528, 65515, 4, 13, 65516, 4, 14, 65516, 4, 15, 65516, 4, 16, 65516, 4, 65525, 65516, 4, 65526, 65516, 4, 65527, 65516, 4, 65528, 65516, 4, 13, 65517, 4, 14, 65517, 4, 15, 65517, 4, 16, 65517, 4, 65525, 65517, 4, 65526, 65517, 4, 65527, 65517, 4, 65528, 65517, 4, 13, 65518, 4, 14, 65518, 4, 15, 65518, 4, 16, 65518, 4, 65525, 65518, 4, 65526, 65518, 4, 65527, 65518, 4, 65528, 65518, 4, 13, 65519, 4, 14, 65519, 4, 15, 65519, 4, 16, 65519, 4, 65525, 65519, 4, 65526, 65519, 4, 65527, 65519, 4, 65528, 65519, 4, 13, 65520, 4, 14, 65520, 4, 15, 65520, 4, 16, 65520, 4, 65525, 65520, 4, 65526, 65520, 4, 65527, 65520, 4, 65528, 65520, 4, 13, 65521, 4, 14, 65521, 4, 15, 65521, 4, 16, 65521, 4, 65525, 65521, 4, 65526, 65521, 4, 65527, 65521, 4, 65528, 65521, 4, 13, 65522, 4, 14, 65522, 4, 15, 65522, 4, 16, 65522, 4, 65525, 65522, 4, 65526, 65522, 4, 65527, 65522, 4, 65528, 65522, 4, 13, 65523, 4, 14, 65523, 4, 15, 65523, 4, 16, 65523, 4, 65525, 65523, 4, 65526, 65523, 4, 65527, 65523, 4, 65528, 65523, 4, 13, 65524, 4, 14, 65524, 4, 15, 65524, 4, 16, 65524, 4, 65525, 65524, 4, 65526, 65524, 4, 65527, 65524, 4, 65528, 65524, 4, 13, 65525, 4, 14, 65525, 4, 15, 65525, 4, 16, 65525, 4, 65525, 65525, 4, 65526, 65525, 4, 65527, 65525, 4, 65528, 65525, 4, 13, 65526, 4, 14, 65526, 4, 15, 65526, 4, 16, 65526, 4, 65525, 65526, 4, 65526, 65526, 4, 65527, 65526, 4, 65528, 65526, 4, 13, 65527, 4, 14, 65527, 4, 15, 65527, 4, 16, 65527, 4, 65525, 65527, 4, 65526, 65527, 4, 65527, 65527, 4, 65528, 65527, 4, 13, 65528, 4, 14, 65528, 4, 15, 65528, 4, 16, 65528, 4, 65525, 65528, 4, 65526, 65528, 4, 65527, 65528, 4, 65528, 65528, 4, 13, 65529, 4, 14, 65529, 4, 15, 65529, 4, 16, 65529, 4, 65525, 65529, 4, 65526, 65529, 4, 65527, 65529, 4, 65528, 65529, 4, 12, 65530, 4, 13, 65530, 4, 14, 65530, 4, 15, 65530, 4, 16, 65530, 4, 65525, 65530, 4, 65526, 65530, 4, 65527, 65530, 4, 65528, 65530, 4, 65529, 65530, 4, 11, 65531, 4, 12, 65531, 4, 13, 65531, 4, 14, 65531, 4, 15, 65531, 4, 16, 65531, 4, 65525, 65531, 4, 65526, 65531, 4, 65527, 65531, 4, 65528, 65531, 4, 65529, 65531, 4, 65530, 65531, 4, 0, 65532, 4, 1, 65532, 4, 2, 65532, 4, 3, 65532, 4, 4, 65532, 4, 5, 65532, 4, 6, 65532, 4, 7, 65532, 4, 8, 65532, 4, 9, 65532, 4, 10, 65532, 4, 11, 65532, 4, 12, 65532, 4, 13, 65532, 4, 14, 65532, 4, 15, 65532, 4, 16, 65532, 4, 65525, 65532, 4, 65526, 65532, 4, 65527, 65532, 4, 65528, 65532, 4, 65529, 65532, 4, 65530, 65532, 4, 65531, 65532, 4, 65532, 65532, 4, 65533, 65532, 4, 65534, 65532, 4, 65535, 65532, 4, 0, 65533, 4, 1, 65533, 4, 2, 65533, 4, 3, 65533, 4, 4, 65533, 4, 5, 65533, 4, 6, 65533, 4, 7, 65533, 4, 8, 65533, 4, 9, 65533, 4, 10, 65533, 4, 11, 65533, 4, 12, 65533, 4, 13, 65533, 4, 14, 65533, 4, 15, 65533, 4, 65526, 65533, 4, 65527, 65533, 4, 65528, 65533, 4, 65529, 65533, 4, 65530, 65533, 4, 65531, 65533, 4, 65532, 65533, 4, 65533, 65533, 4, 65534, 65533, 4, 65535, 65533, 4, 0, 65534, 4, 1, 65534, 4, 2, 65534, 4, 3, 65534, 4, 4, 65534, 4, 5, 65534, 4, 6, 65534, 4, 7, 65534, 4, 8, 65534, 4, 9, 65534, 4, 10, 65534, 4, 11, 65534, 4, 12, 65534, 4, 13, 65534, 4, 14, 65534, 4, 65527, 65534, 4, 65528, 65534, 4, 65529, 65534, 4, 65530, 65534, 4, 65531, 65534, 4, 65532, 65534, 4, 65533, 65534, 4, 65534, 65534, 4, 65535, 65534, 4, 0, 65535, 4, 1, 65535, 4, 2, 65535, 4, 3, 65535, 4, 4, 65535, 4, 5, 65535, 4, 6, 65535, 4, 7, 65535, 4, 8, 65535, 4, 9, 65535, 4, 10, 65535, 4, 11, 65535, 4, 12, 65535, 4, 13, 65535, 4, 65529, 65535, 4, 65530, 65535, 4, 65531, 65535, 4, 65532, 65535, 4, 65533, 65535, 4, 65534, 65535, 4, 65535, 65535, 4 )
+}
+__meta__ = {
+"_editor_clip_": 0
+}
+
+[node name="Geometry" type="Node" parent="."]
+
+[node name="Floor" type="StaticBody" parent="Geometry"]
+collision_layer = 4
+collision_mask = 2049
+
+[node name="Mesh" type="MeshInstance" parent="Geometry/Floor"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Floor"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 3 )
+
+[node name="Floor2" type="StaticBody" parent="Geometry"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200 )
+collision_layer = 4
+collision_mask = 2049
+
+[node name="Mesh" type="MeshInstance" parent="Geometry/Floor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.435026, -5.72205e-06, -0.000320435 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Geometry/Floor2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+shape = SubResource( 3 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.999, 0.0416325, -0.0163212, 0.0235978, 0.80084, 0.598413, 0.0379841, 0.597429, -0.801022, -17.3175, 5.94963, -35.008 )
+light_color = Color( 0.929412, 0.733333, 0.0588235, 1 )
+light_energy = 5.0
+shadow_enabled = true
+shadow_bias = 0.4
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 5 )
+
+[node name="TEST_Door1" parent="." instance=ExtResource( 4 )]
+transform = Transform( 4, 0, 0, 0, 1, 0, 0, 0, 1, 6.19635, -0.327576, -50.9593 )
+
+[node name="Trigger_01" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.19635, 0, -53.4278 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Trigger_01"]
+shape = SubResource( 6 )
+disabled = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Trigger_01"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0384412, 2.3348 )
+mesh = SubResource( 8 )
+material/0 = null
+
+[node name="Path" type="Path" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.665322, -0.746557, 0, 0.746557, 0.665322, 10.3789, 1.13361, -54.6257 )
+curve = SubResource( 9 )
+script = ExtResource( 13 )
+
+[node name="Tween" type="Tween" parent="Path"]
+
+[node name="PathFollow" type="PathFollow" parent="Path"]
+transform = Transform( -0.844784, -0.165918, 0.508731, -0.114737, 0.984768, 0.130641, -0.522661, 0.0519938, -0.850948, -7.26966, 2.06543, -1.95092 )
+rotation_mode = 0
+
+[node name="CPUParticles" type="CPUParticles" parent="Path/PathFollow"]
+amount = 16
+speed_scale = 0.75
+local_coords = false
+mesh = SubResource( 11 )
+direction = Vector3( 0, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+angle_curve = SubResource( 12 )
+scale_amount_curve = SubResource( 13 )
+color_ramp = SubResource( 14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Path"]
+"anims/New Anim" = SubResource( 15 )
+
+[node name="Position3D1A" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.289, 2, -39.658 )
+
+[node name="Position3D1B" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15.243, 2, -39.658 )
+
+[node name="Position3D2" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.947, 1, -77.7163 )
+
+[node name="Tween2" type="Tween" parent="."]
+
+[node name="Tween3" type="Tween" parent="."]
+
+[node name="Cam" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.82597, 0.563714, 0, -0.563714, 0.82597, 5.40299, 7.46006, -27.0378 )
+
+[node name="CPUParticles2" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38006, 1, -33.0151 )
+cast_shadow = 0
+generate_lightmap = false
+amount = 16
+local_coords = false
+mesh = SubResource( 17 )
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 1 )
+initial_velocity = 2.0
+linear_accel = -2.0
+tangential_accel = -35.0
+damping = 35.0
+scale_amount = 0.25
+scale_amount_random = 0.2
+scale_amount_curve = SubResource( 18 )
+anim_speed = 3.0
+
+[node name="Area" type="Area" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3256, 0.1, -30.9549 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.913, 0 )
+shape = SubResource( 19 )
+disabled = true
+
+[node name="MeshInstance" type="MeshInstance" parent="Area"]
+mesh = SubResource( 21 )
+material/0 = null
+
+[node name="Pick_Up_Healing_Flower" parent="." instance=ExtResource( 16 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.338647, 0, -29.9708 )
+
+[node name="Pick_Up_Healing_Flower_Full" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.315331, 0.105344, -28.7594 )
+
+[connection signal="body_entered" from="Trigger_01" to="." method="_on_Trigger_01_body_entered"]
+[connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]

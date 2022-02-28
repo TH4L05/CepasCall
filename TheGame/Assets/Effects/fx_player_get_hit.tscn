@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Textures/VFX/leaf.png" type="Texture" id=1]
+
+[sub_resource type="Curve" id=1]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 44.0909 ), 0.0, 0.0, 0, 0, Vector2( 1, -108.636 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.568182 ), 0.0, 2.32554, 0, 0, Vector2( 1, 0 ), -2.51364, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0, 0.209091 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=6]
+curve = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+trail_size_modifier = SubResource( 6 )
+direction = Vector3( 0, 1, 0 )
+spread = 80.49
+gravity = Vector3( 0, -0.956, 0 )
+initial_velocity = 6.4
+angular_velocity = 720.0
+angular_velocity_random = 0.44
+linear_accel_curve = SubResource( 2 )
+scale = 0.44
+scale_curve = SubResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=8]
+flags_unshaded = true
+params_blend_mode = 1
+params_cull_mode = 2
+params_billboard_mode = 3
+params_use_alpha_scissor = true
+params_alpha_scissor_threshold = 0.98
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 0.639216, 0.25098, 0.25098, 1 )
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="QuadMesh" id=9]
+material = SubResource( 8 )
+
+[node name="fx_player_get_hit" type="Particles"]
+emitting = false
+amount = 20
+lifetime = 0.34
+one_shot = true
+explosiveness = 0.66
+visibility_aabb = AABB( -2.72742, -1, -2.61697, 5.27078, 3.95515, 4.56876 )
+local_coords = false
+process_material = SubResource( 7 )
+draw_pass_1 = SubResource( 9 )

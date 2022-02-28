@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Scene_Templates/Healthbar2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Textures/HUD/cirle_progress.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Scripts/Healthbar.gd" type="Script" id=3]
+
+[node name="Healthbar" type="Sprite3D"]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
+texture = ExtResource( 2 )
+script = ExtResource( 3 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 80, 80 )
+transparent_bg = true
+hdr = false
+disable_3d = true
+usage = 0
+render_direct_to_screen = true
+render_target_v_flip = true
+
+[node name="Healthbar2D" parent="Viewport" instance=ExtResource( 1 )]
