@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_player_summon.grenade.wav-d9a7749ca2f8d35ba1dd6f202a6dea60.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound/Player/kaja/sound_player_summon.grenade.wav"
+dest_files=[ "res://.import/sound_player_summon.grenade.wav-d9a7749ca2f8d35ba1dd6f202a6dea60.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

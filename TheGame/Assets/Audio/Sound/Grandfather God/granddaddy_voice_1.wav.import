@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/granddaddy_voice_1.wav-2afd10506185dc0e99223dd0ed044907.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound/Grandfather God/granddaddy_voice_1.wav"
+dest_files=[ "res://.import/granddaddy_voice_1.wav-2afd10506185dc0e99223dd0ed044907.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_player_walk.wav-60528db38cdfb2484603ff380160dc48.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound/Player/kaja/sound_player_walk.wav"
+dest_files=[ "res://.import/sound_player_walk.wav-60528db38cdfb2484603ff380160dc48.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

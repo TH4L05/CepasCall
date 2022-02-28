@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sound_menu_button.snap.wav-5268aa8d279e1025f0a97a331be1ac37.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Sound/Menu/kaja/sound_menu_button.snap.wav"
+dest_files=[ "res://.import/sound_menu_button.snap.wav-5268aa8d279e1025f0a97a331be1ac37.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
